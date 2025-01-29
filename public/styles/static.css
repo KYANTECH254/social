@@ -1,0 +1,17 @@
+.display-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-g5 {
+    column-gap: 5px;
+}
+
+.col-g-1 {
+    column-gap: 10px;
+}
+
+.row-g5 {
+    row-gap: 5px;
+}
