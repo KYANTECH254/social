@@ -1,4 +1,4 @@
-export const formatTimestamp = (timestamp: number): string => {
+export const formatTimestamp = (timestamp: string): string => {
     const inputDate = new Date(timestamp);
     const currentDate = new Date();
   

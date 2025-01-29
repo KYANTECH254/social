@@ -9,6 +9,7 @@
     -main-hover-icons-color: #301934;
     --main-transparent-black-color: #00000012;
     --main-chat-last-message-color: #222;
+    --main-chat-hover-color: #cdcdcd;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +19,7 @@
         --main-border-color: #ffffff29;
         --main-img-icons-background-color: #222;
         --main-chat-last-message-color: #888;
+        --main-chat-hover-color: #222;
     }
 }
 
@@ -199,9 +201,10 @@ body {
     align-items: center;
     justify-content: left;
     column-gap: 5px;
+    color: var(--main-chat-last-message-color);
 }
 
-.chat-item  {
+.chat-item {
     column-gap: 10px;
 }
 
@@ -221,4 +224,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.chat-item:hover {
+    background-color: var(--main-chat-hover-color);
+    cursor: pointer;
 }

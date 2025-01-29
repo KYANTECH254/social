@@ -32,7 +32,7 @@ export default function ChatsComponent() {
     ];
 
     return (
-        <div className="chats-container p-2 space-y-4">
+        <div className="chats-container space-y-4">
             {chats.map((chat, index) => (
                 <div key={index} className="chat-item flex items-center p-2">
                     <img
