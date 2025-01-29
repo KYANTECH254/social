@@ -4,12 +4,13 @@
     --main-text-color: #000;
     --main-border-color: #00000027;
     --main-white: #FFF;
-    --main-hover-icons-color: #2564eb77;
+    --main-hover-icons-color: #2564eb60;
     --main-img-icons-background-color: #cdcdcd;
     -main-hover-icons-color: #301934;
     --main-transparent-black-color: #00000012;
     --main-chat-last-message-color: #222;
     --main-chat-hover-color: #cdcdcd;
+    --main-hover-background-color: #cdcdcd42;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,6 +21,7 @@
         --main-img-icons-background-color: #222;
         --main-chat-last-message-color: #888;
         --main-chat-hover-color: #222;
+        --main-hover-background-color: #22222242;
     }
 }
 
@@ -229,4 +231,65 @@ body {
 .chat-item:hover {
     background-color: var(--main-chat-hover-color);
     cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding: 10px; */
+    color: var(--main-text-color);
+    background-color: var(--main-background-color);
+    height: 100%;
+    position: relative;
+    top: 130px;
+}
+
+.settings-cards {
+    border-bottom: 1px solid var(--main-border-color);
+}
+
+.settings-ex-cards {
+    border-bottom: 1px solid var(--main-border-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.settings-container .settings-cards:first-child,
+.settings-container .settings-ex-cards:first-child {
+    border-top: 1px solid var(--main-border-color);
+}
+
+.settings-cards:hover {
+    background-color: var(--main-chat-hover-color);
+    color: var(--main-color);
+}
+
+.container-sub-headings {
+    color: var(--main-color);
+    font-weight: 500;
+}
+
+.back-button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100px;
+    color: var(--main-text-color);
+    background-color: var(--main-hover-background-color);
+}
+
+.back-button:hover {
+    color: var(--main-text-color);
+    background-color: var(--main-hover-icons-color);
 }
