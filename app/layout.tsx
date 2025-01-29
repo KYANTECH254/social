@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Noto_Sans } from '@next/font/google';
 import "./globals.css";
@@ -5,9 +6,9 @@ import "../public/styles/main.css"
 import "../public/styles/static.css"
 
 const notoSans = Noto_Sans({
-  subsets: ['latin'], // Add more subsets like 'cyrillic', 'greek' if needed
-  weight: ['400', '700'], // Choose weights (e.g., 400 for normal, 700 for bold)
-  style: ['normal', 'italic'], // Include styles if needed
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={notoSans.className}>{children}</body>
+      <body className={notoSans.className}>
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,4 +1,4 @@
-export function formatTimestamp (timestamp: string): string {
+export function formatTimestamp(timestamp: string): string {
   const inputDate = new Date(timestamp);
   const currentDate = new Date();
 
@@ -10,7 +10,7 @@ export function formatTimestamp (timestamp: string): string {
 
   if (isToday) {
     // Check if time is exactly midnight (00:00)
-    const isMidnight = 
+    const isMidnight =
       inputDate.getHours() === 0 &&
       inputDate.getMinutes() === 0 &&
       inputDate.getSeconds() === 0 &&
@@ -55,3 +55,7 @@ export function deleteFromLocalStorage(name: string): void {
 export function getFromLocalStorage(name: string): string | null {
   return localStorage.getItem(name);
 }
+
+export function GoBack() {
+  window.history.back();
+};

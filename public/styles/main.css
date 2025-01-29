@@ -33,6 +33,31 @@ body {
     position: relative;
 }
 
+main.dark-mode {
+    --main-background-color: #000;
+    --main-text-color: #FFF;
+    --main-border-color: #ffffff29;
+    --main-img-icons-background-color: #222;
+    --main-chat-last-message-color: #888;
+    --main-chat-hover-color: #222;
+    --main-hover-background-color: #22222242;
+}
+
+main.light-mode {
+    --main-color: #2563EB;
+    --main-background-color: #FFF;
+    --main-text-color: #000;
+    --main-border-color: #00000027;
+    --main-white: #FFF;
+    --main-hover-icons-color: #2564eb60;
+    --main-img-icons-background-color: #cdcdcd;
+    -main-hover-icons-color: #301934;
+    --main-transparent-black-color: #00000012;
+    --main-chat-last-message-color: #222;
+    --main-chat-hover-color: #cdcdcd;
+    --main-hover-background-color: #cdcdcd42;
+}
+
 .top-nav {
     background-color: var(--main-background-color);
     color: var(--main-text-color);
@@ -292,4 +317,58 @@ body {
 .back-button:hover {
     color: var(--main-text-color);
     background-color: var(--main-hover-icons-color);
+}
+
+.mode-active {
+    /* Set the icon's background color to the theme's active color */
+    background-color: var(--main-color);
+    color: white;
+    /* Ensure the icon color contrasts well with the background */
+    padding: 4px;
+    /* Optional: Add padding around the icon for a rounded background effect */
+    border-radius: 50%;
+    /* Make the background circular */
+}
+
+
+/* Slider styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+/* The slider */
+.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+/* The circle inside the slider */
+.switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    left: 6px;
+    bottom: 2px;
+    background-color: var(--main-white);
+    transition: 0.4s;
+}
+
+input:checked+.slider {
+    background-color: var(--main-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
 }
