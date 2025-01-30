@@ -26,7 +26,7 @@ export default function Saved() {
   const [viewProfile, setViewProfile] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
 
-  const profilePopupRef = useRef(null);
+  const profilePopupRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event:any) => {
@@ -55,7 +55,7 @@ export default function Saved() {
                 alt={`${contact.name}'s profile`}
                 className="w-12 h-12 rounded-full"
                 onClick={() => {
-                  setSelectedContact(contact);
+                  // setSelectedContact(contact);
                   setViewProfile(true);
                 }}
               />

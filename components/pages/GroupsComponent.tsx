@@ -38,7 +38,7 @@ export default function GroupsComponent() {
         },
     ];
 
-    const profilePopupRef = useRef(null);
+    const profilePopupRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const handleClickOutside = (event: any) => {
@@ -47,10 +47,13 @@ export default function GroupsComponent() {
                 setSelectedContact(null);
             }
         };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+    
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, []);
+    
 
     return (
         <>
@@ -62,7 +65,7 @@ export default function GroupsComponent() {
                             alt={`${chat.name}'s profile`}
                             className="w-12 h-12 rounded-full"
                             onClick={() => {
-                                setSelectedContact(chat);
+                                // setSelectedContact(chat);
                                 setViewProfile(true);
                               }}
                         />

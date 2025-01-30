@@ -11,7 +11,21 @@ import ProfilePicture from "../PopUps/ProfilePicture";
 export default function ChatsComponent() {
     const [viewProfile, setViewProfile] = useState(false);
     const [selectedContact, setSelectedContact] = useState(null);
+    const profilePopupRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: any) => {
+            if (profilePopupRef.current && !profilePopupRef.current.contains(event.target)) {
+                setViewProfile(false);
+                setSelectedContact(null);
+            }
+        };
     
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
     const chats = [
         {
             name: "John Doe",
@@ -38,20 +52,7 @@ export default function ChatsComponent() {
             status: "not-delivered"
         },
     ];
-
-    const profilePopupRef = useRef(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event: any) => {
-            if (profilePopupRef.current && !profilePopupRef.current.contains(event.target)) {
-                setViewProfile(false);
-                setSelectedContact(null);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    
 
     return (
         <>
@@ -63,7 +64,7 @@ export default function ChatsComponent() {
                         alt={`${chat.name}'s profile`}
                         className="w-12 h-12 rounded-full"
                         onClick={() => {
-                            setSelectedContact(chat);
+                            // setSelectedContact(chat);
                             setViewProfile(true);
                           }}
                     />
