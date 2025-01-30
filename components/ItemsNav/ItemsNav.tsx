@@ -19,7 +19,7 @@ export default function ItemsNav() {
   };
 
   return (
-    <div className="items-topnav flex justify-between items-center bg-gray-100 p-2 w-full">
+    <div className="items-topnav flex justify-between items-center p-2 w-full">
       {menuItems.map((item) => {
         const Icon = item.icon;
         const isActive = activeItem === item.name;

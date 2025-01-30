@@ -4,6 +4,7 @@ import { Noto_Sans } from '@next/font/google';
 import "./globals.css";
 import "../public/styles/main.css"
 import "../public/styles/static.css"
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const notoSans = Noto_Sans({
   subsets: ['latin'],
@@ -24,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={notoSans.className}>
-        {children}
+      <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

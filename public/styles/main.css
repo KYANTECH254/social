@@ -1,3 +1,4 @@
+/* Default styles (System preference fallback) */
 :root {
     --main-color: #2563EB;
     --main-background-color: #FFF;
@@ -6,7 +7,6 @@
     --main-white: #FFF;
     --main-hover-icons-color: #2564eb60;
     --main-img-icons-background-color: #cdcdcd;
-    -main-hover-icons-color: #301934;
     --main-transparent-black-color: #00000012;
     --main-chat-last-message-color: #222;
     --main-chat-hover-color: #cdcdcd;
@@ -14,6 +14,7 @@
     --main-transparent-grey-color: rgba(0, 0, 0, 0.503);
 }
 
+/* System preference (default behavior if no class is set) */
 @media (prefers-color-scheme: dark) {
     :root {
         --main-background-color: #000;
@@ -26,41 +27,35 @@
     }
 }
 
+/* Force Light Mode */
+.light {
+    --main-background-color: #FFF !important;
+    --main-text-color: #000 !important;
+    --main-border-color: #00000027 !important;
+    --main-img-icons-background-color: #cdcdcd !important;
+    --main-chat-last-message-color: #222 !important;
+    --main-chat-hover-color: #cdcdcd !important;
+    --main-hover-background-color: #cdcdcd42 !important;
+}
+
+/* Force Dark Mode */
+.dark {
+    --main-background-color: #000 !important;
+    --main-text-color: #FFF !important;
+    --main-border-color: #ffffff29 !important;
+    --main-img-icons-background-color: #222 !important;
+    --main-chat-last-message-color: #888 !important;
+    --main-chat-hover-color: #222 !important;
+    --main-hover-background-color: #22222242 !important;
+}
+
+
 html,
 body {
     background-color: var(--main-background-color);
     margin: 0;
     padding: 0;
     position: relative;
-}
-
-main {
-    background-color: var(--main-background-color);
-}
-
-main.dark-mode {
-    --main-background-color: #000;
-    --main-text-color: #FFF;
-    --main-border-color: #ffffff29;
-    --main-img-icons-background-color: #222;
-    --main-chat-last-message-color: #888;
-    --main-chat-hover-color: #222;
-    --main-hover-background-color: #22222242;
-}
-
-main.light-mode {
-    --main-color: #2563EB;
-    --main-background-color: #FFF;
-    --main-text-color: #000;
-    --main-border-color: #00000027;
-    --main-white: #FFF;
-    --main-hover-icons-color: #2564eb60;
-    --main-img-icons-background-color: #cdcdcd;
-    -main-hover-icons-color: #301934;
-    --main-transparent-black-color: #00000012;
-    --main-chat-last-message-color: #222;
-    --main-chat-hover-color: #cdcdcd;
-    --main-hover-background-color: #cdcdcd42;
 }
 
 .top-nav {
