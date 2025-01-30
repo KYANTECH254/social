@@ -1,6 +1,6 @@
 "use client"
 
-import { User, PaintBucket, Shield, Lock, LogOut } from "lucide-react";
+import { User, PaintBucket, Shield, Lock, LogOut, HelpCircle, Settings } from "lucide-react";
 import ItemsNav from "@/components/ItemsNav/ItemsNav";
 import TopNav from "@/components/TopNav/TopNav";
 import Link from "next/link";
@@ -17,8 +17,11 @@ export default function Page() {
         { name: "Theme", icon: <PaintBucket size={20} />, link: "/settings/theme" },
         { name: "Privacy", icon: <Shield size={20} />, link: "/settings/privacy" },
         { name: "Security", icon: <Lock size={20} />, link: "/settings/security" },
+        { name: "Account Management", icon: <Settings size={20} />, link: "/settings/account" },
+        { name: "Help", icon: <HelpCircle size={20} />, link: "/help" },
         { name: "Logout", icon: <LogOut size={20} />, link: "/logout" },
     ];
+    
     useTheme();
     return (
         <main>
