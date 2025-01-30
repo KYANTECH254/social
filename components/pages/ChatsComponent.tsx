@@ -1,9 +1,17 @@
+"use client"
+
 import { formatTimestamp } from "@/lib/Functions";
 import SingleDashIcon from "../Icons/SingleDashIcon";
 import DoubleDashIcon from "../Icons/DoubleDashIcon";
 import TripleDashIcon from "../Icons/TripleDashIcon";
+import { useState, useRef, useEffect } from "react";
+import ProfilePicture from "../PopUps/ProfilePicture";
+
 
 export default function ChatsComponent() {
+    const [viewProfile, setViewProfile] = useState(false);
+    const [selectedContact, setSelectedContact] = useState(null);
+    
     const chats = [
         {
             name: "John Doe",
@@ -31,7 +39,22 @@ export default function ChatsComponent() {
         },
     ];
 
+    const profilePopupRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: any) => {
+            if (profilePopupRef.current && !profilePopupRef.current.contains(event.target)) {
+                setViewProfile(false);
+                setSelectedContact(null);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
     return (
+        <>
         <div className="chats-container space-y-4">
             {chats.map((chat, index) => (
                 <div key={index} className="chat-item flex items-center p-2">
@@ -39,6 +62,10 @@ export default function ChatsComponent() {
                         src={chat.profilePic}
                         alt={`${chat.name}'s profile`}
                         className="w-12 h-12 rounded-full"
+                        onClick={() => {
+                            setSelectedContact(chat);
+                            setViewProfile(true);
+                          }}
                     />
                     <div className="flex-1">
                         <span className="text-lg font-medium block chat-items-name">
@@ -60,5 +87,18 @@ export default function ChatsComponent() {
                 </div>
             ))}
         </div>
+                    {/* Profile Picture Popup */}
+                    {viewProfile && (
+                        <div ref={profilePopupRef}>
+                            <ProfilePicture
+                                contact={selectedContact}
+                                onClose={() => {
+                                    setSelectedContact(null);
+                                    setViewProfile(false);
+                                }}
+                            />
+                        </div>
+                    )}
+        </>
     );
 }

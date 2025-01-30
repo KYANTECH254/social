@@ -11,6 +11,7 @@
     --main-chat-last-message-color: #222;
     --main-chat-hover-color: #cdcdcd;
     --main-hover-background-color: #cdcdcd42;
+    --main-transparent-grey-color: rgba(0, 0, 0, 0.503);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -72,7 +73,7 @@ main.light-mode {
     height: 50px;
     position: fixed;
     width: 100%;
-    z-index: 1000;
+    z-index: 100;
     top: 0;
 }
 
@@ -95,6 +96,20 @@ main.light-mode {
     top: 130px;
 }
 
+.popup-bg-container {
+    position: fixed; /* Use fixed to cover the entire screen */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; 
+    outline: 1px solid red;
+}
+
 .top-nav-icons:hover {
     background-color: var(--main-color);
     cursor: pointer;
@@ -107,7 +122,7 @@ main.light-mode {
     border-bottom: 1px solid var(--main-border-color);
     position: fixed;
     width: 100%;
-    z-index: 1000;
+    z-index: 100;
     top: 50px;
 }
 
@@ -225,7 +240,7 @@ main.light-mode {
     position: fixed;
     top: 50px;
     width: 100%;
-    z-index: 1000;
+    z-index: 100;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -392,6 +407,7 @@ input:checked+.slider:before {
 .profile-img {
     background-color: var(--main-transparent-black-color);
 }
+
 .user-info-container .profile-cards:first-child {
     border-top: 1px solid var(--main-border-color);
 }
@@ -434,9 +450,68 @@ input:checked+.slider:before {
 .profile-input {
     background-color: transparent;
     border: none;
-    outline:none;
+    outline: none;
     color: var(--main-text-color);
     font-size: inherit;
     font-family: inherit;
     width: 100%;
+}
+
+.popup-bg-container {
+    position: fixed;
+    padding: 10px;
+    background-color: var(-main-hover-background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-popup-container {
+    position: fixed; /* Fixed position to stay on the screen */
+    top: 50%; /* Position vertically in the middle */
+    left: 50%; /* Position horizontally in the middle */
+    transform: translate(-50%, -60%); /* Offset by half the width and height to truly center */
+    background-color: transparent; /* Example background color, adjust as needed */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for a popup effect */
+    z-index: 1000; /* Make sure it's above other content */
+    width: 300px; 
+    height:250px;
+    /* outline: 1px solid red; */
+}
+
+.profile-popup-header {
+    position: absolute;
+    height: 50px;
+    background-color: var(--main-transparent-grey-color);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    color: var(--main-white);
+    font-size:16px;
+    padding: 10px;
+    z-index:999;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-popup-body  {
+    height: 200px;
+    width:100%;
+    background-color: var(--main-transparent-grey-color);
+}
+
+.profile-pic-img {
+    height: 200px;
+    width:100%;
+}
+
+.profile-popup-footer {
+    height: 50px;
+    background-color: #222;
+    font-size:16px;
+    padding:10px;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
 }
