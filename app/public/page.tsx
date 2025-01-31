@@ -4,7 +4,7 @@ import TopNav from "../../components/TopNav/TopNav";
 
 export default function Page() {
     return (
-        <div className="chats-page-container">
+        <div className="container">
             <TopNav />
             <ItemsNav />
             <SocialFeed />

@@ -12,6 +12,7 @@
     --main-chat-hover-color: #cdcdcd;
     --main-hover-background-color: #cdcdcd42;
     --main-transparent-grey-color: rgba(0, 0, 0, 0.503);
+    --main-grey-color:#666;
 }
 
 /* System preference (default behavior if no class is set) */
