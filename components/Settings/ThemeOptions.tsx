@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Moon, ArrowLeft } from "lucide-react";
 import ItemsNav from "@/components/ItemsNav/ItemsNav";
 import TopNav from "@/components/TopNav/TopNav";
@@ -15,6 +15,17 @@ export default function ThemeOptions() {
   }
 
   const { theme, toggleTheme } = themeContext;
+  const [isSystemMode, setIsSystemMode] = useState(false);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    setIsSystemMode(storedTheme === "system");
+  }, [theme]); // Added theme as a dependency
+
+  const handleSystemToggle = () => {
+    localStorage.setItem("theme", "system");
+    setIsSystemMode(true);
+  };
 
   return (
     <main>
@@ -42,7 +53,8 @@ export default function ThemeOptions() {
             <span>Dark / Light Theme</span>
             <Moon
               size={36}
-              className={`${theme === "dark" ? "mode-active" : ""} transition-all duration-200`}
+              className={`${
+    theme === "dark" ? "mode-active" : ""} transition-all duration-200`}
             />
           </div>
 
@@ -52,9 +64,9 @@ export default function ThemeOptions() {
             <label className="switch">
               <input
                 type="checkbox"
-                checked={theme === 'system'}
-                onChange={() => { }}
-                disabled={theme === 'system'} // Disable the toggle when theme is set to 'system'
+                checked={isSystemMode}
+                onChange={handleSystemToggle}
+                disabled={isSystemMode} // Disable the toggle when theme is set to 'system'
                 className="h-6 w-11 rounded-full bg-gray-200 transition-colors duration-200 checked:bg-blue-500 cursor-pointer"
               />
               <span className="slider"></span>

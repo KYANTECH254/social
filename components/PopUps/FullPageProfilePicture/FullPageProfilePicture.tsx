@@ -13,7 +13,7 @@ export default function FullPageProfilePicture({ contact, onClose }: any) {
         <div className="full-page-popup-container">
             {/* Header with back button and name */}
             <div className="full-page-popup-header">
-                <button className="back-button" onClick={onClose}>
+                <button className="page-back-button" onClick={onClose}>
                     <ArrowLeft size={32} />
                     <span className="profile-name">
                         {/* {contact.name} */}

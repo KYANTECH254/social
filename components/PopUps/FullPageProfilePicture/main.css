@@ -24,10 +24,10 @@
     font-size: 20px;
 }
 
-.back-button {
+.page-back-button {
     background: none;
     border: none;
-    color: #FFF;
+    color: var(--main-text-color);
     cursor: pointer;
     display: flex;
     align-items: center;

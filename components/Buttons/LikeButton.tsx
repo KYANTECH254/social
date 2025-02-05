@@ -15,16 +15,16 @@ export default function LikeButton() {
     return (
         <button
             onClick={toggleLike}
-            className="flex items-center space-x-2 p-2 rounded-md transition-transform duration-200 hover:scale-105"
+            className="space-x-1 p-2 rounded-md transition-transform duration-200 hover:scale-105 display-center"
         >
             <ThumbsUp
                 size={20}
                 className={`transition-colors duration-300 ${
-                    liked ? "text-blue-500" : "text-gray-400"
+                    liked ? "default-color" : "default-text-color "
                 }`}
-                fill={liked ? "blue" : "none"}
+                fill={liked ? "#2563EB " : "none"}
             />
-            <span className="text-lg font-medium">{likes}</span>
+            <span className="text-sm font-medium">{likes}</span>
         </button>
     );
 }

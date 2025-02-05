@@ -4,6 +4,7 @@ import { Pen, Camera, Check } from "lucide-react";
 import ItemsNav from "@/components/ItemsNav/ItemsNav";
 import TopNav from "@/components/TopNav/TopNav";
 import { useState } from "react";
+import Back from "@/components/Buttons/Back";
 
 export default function Page() {
     const [username, setUsername] = useState("john_doe");
@@ -22,11 +23,13 @@ export default function Page() {
         <main className="flex flex-col items-center p-4">
             <TopNav />
             <ItemsNav />
+
             <div className="container">
+                <Back />
                 {/* Profile Image Section */}
-                <div className="relative mt-6">
+                <div className="relative mt-6 profile-img-container">
                     <img
-                        src={profileImage} // Replace with dynamic user profile image
+                        src={profileImage}
                         alt="Profile"
                         className="w-32 h-32 rounded-full border-4 border-gray-300 object-cover profile-img default-color"
                     />
@@ -36,7 +39,7 @@ export default function Page() {
                         className="absolute inset-0 opacity-0 cursor-pointer"
                         onChange={handleImageChange}
                     />
-                    <button className="absolute bottom-2 right-2 default-bg p-2 rounded-full shadow-md">
+                    <button className="absolute bottom-2 default-bg p-2 rounded-full shadow-md">
                         <Camera size={18} />
                     </button>
                 </div>

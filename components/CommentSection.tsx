@@ -77,8 +77,8 @@ export default function CommentSection() {
                         </div>
 
                         <div className="reply-box-content">
-                            <div className="reply-content-user">@gloria</div>
                             <div className="reply-content">
+                                <span className="reply-content-user">@gloria</span>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             </div>
