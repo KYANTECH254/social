@@ -777,3 +777,23 @@ input:checked+.slider:before {
 .profile-img-container button {
     right: 100px;
 }
+
+/* In your global CSS or module CSS file */
+.status-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin: 10px;
+    position: relative;
+  }
+  
+  .status-circle div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+  }
+  
