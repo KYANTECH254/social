@@ -14,8 +14,9 @@ export default function FullPageProfilePicture({ contact, onClose }: any) {
         config: { tension: 200, friction: 25 },
     }));
 
-    const toggleZoom = () => {
+    const toggleZoom = (e:any) => {
         setZoomed(!zoomed);
+        e.stopPropagation()
     };
 
     const handleTouchStart = (e: React.TouchEvent) => {
