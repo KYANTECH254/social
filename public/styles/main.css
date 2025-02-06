@@ -100,6 +100,11 @@ body {
     top: 130px;
 }
 
+.container-bg {
+    background-color: var(--main-background-color);
+    color: var(--main-text-color);
+}
+
 .no-header-container {
     display: flex;
     flex-direction: column;
@@ -140,6 +145,7 @@ body {
     width: 100%;
     z-index: 100;
     top: 50px;
+    height: 80px;
 }
 
 .items-topnav-item {
@@ -153,22 +159,44 @@ body {
 .items-topnav-item:hover {
     background-color: var(--main-hover-icons-color);
     border-radius: 50%;
+    color: var(--main-color) !important;
+}
+
+.items-topnav-item:hover .items-topnav-list {
+    color: var(--main-color) !important;
+}
+
+.items-topnav-item:hover.active {
+    color: inherit;
+    background-color: transparent;
 }
 
 .items-topnav-item.no-hover:hover {
     background-color: transparent;
     border-radius: 50%;
-    /* Keeps the circular shape */
 }
 
 .items-topnav-item.active,
 .items-topnav-item.active>.items-topnav-list {
     color: var(--main-color);
     cursor: pointer;
+    font-weight: 600;
 }
 
 .items-topnav-list {
     color: var(--main-text-color);
+}
+.nav-icons {
+    border-radius: 30%;
+    width: 50px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.active .nav-icons {
+    background-color: var(--main-hover-icons-color);
 }
 
 .floating-icons-container {
@@ -355,7 +383,6 @@ body {
 .back-button {
     display: flex;
     justify-content: left;
-    margin: 10px;
     padding: 10px;
     border-radius: 5px;
     width: 100px;
@@ -678,7 +705,7 @@ input:checked+.slider:before {
     display: flex;
     flex-direction: row;
     padding-left: 5px;
-    margin-top: -5px;
+    margin-top: 0px;
 }
 
 .comment-modal-menu {
@@ -739,6 +766,7 @@ input:checked+.slider:before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .share-container {
@@ -760,11 +788,13 @@ input:checked+.slider:before {
 .share-btn {
     width: 50px;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .share-icon-btn span {
     font-size: 13px;
+    display: flex;
+    flex: 1;
 }
 
 .profile-img-container {

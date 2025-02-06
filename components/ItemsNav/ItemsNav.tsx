@@ -17,9 +17,8 @@ export default function ItemsNav() {
   const [activeItem, setActiveItem] = useState("");
 
   useEffect(() => {
-    // Set the active item based on the current pathname or default to the home ("/") link
     const active = menuItems.find((item) => item.link === pathname);
-    setActiveItem(active ? active.name : "Saved"); // Default to "Saved" or "/" if no match
+    setActiveItem(active ? active.name : "Saved");
   }, [pathname]);
 
   return (
@@ -33,7 +32,9 @@ export default function ItemsNav() {
             <div
               className={`flex flex-col items-center items-topnav-item ${isActive ? "active text-blue-500" : ""}`}
             >
-              <Icon className="w-6 h-6" />
+              <div className="nav-icons">
+                <Icon className="w-6 h-6" />
+              </div>
               <span className="text-sm mt-1 items-topnav-list">{item.name}</span>
             </div>
           </Link>

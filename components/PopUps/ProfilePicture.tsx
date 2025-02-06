@@ -1,30 +1,30 @@
-import { MessageCircle } from "lucide-react";
-import { Info } from "lucide-react";
+import { MessageCircle, Info } from "lucide-react";
 import { useState } from "react";
 import FullPageProfilePicture from "./FullPageProfilePicture/FullPageProfilePicture";
 
 export default function ProfilePicture({ contact, onClose }: any) {
     const [showFullPage, setShowFullPage] = useState(false);
+    const [showPopup, setShowPopup] = useState(true);
 
     const handleImageClick = () => {
-        setShowFullPage(true); 
-    };
-
-    const handlePopupClick = (e: React.MouseEvent) => {
-        e.stopPropagation(); 
+        setShowFullPage(true);
+        setShowPopup(false); 
     };
 
     const closeFullPagePopup = () => {
         setShowFullPage(false);
+        setShowPopup(false); 
+        onClose();
     };
 
     const handleBackgroundClick = () => {
-        setShowFullPage(false); // Close the full-page profile if open
-        onClose(); // Close the main popup
+        setShowFullPage(false);
+        setShowPopup(false); 
+        onClose(); 
     };
 
     return (
-        <div>
+        <div className="popup-bg-container" onClick={handleBackgroundClick}>
             {showFullPage && (
                 <FullPageProfilePicture
                     contact={contact}
@@ -32,13 +32,10 @@ export default function ProfilePicture({ contact, onClose }: any) {
                 />
             )}
 
-            <div
-                className="popup-bg-container"
-                onClick={handleBackgroundClick} // Close both when clicking outside
-            >
+            {showPopup && !showFullPage && (
                 <div
                     className="profile-popup-container"
-                    onClick={handlePopupClick} // Prevent closing when clicking inside the popup
+                    onClick={(e) => e.stopPropagation()} 
                 >
                     <div className="profile-popup-header">
                         <span className="profile-popup-header-text">
@@ -61,7 +58,7 @@ export default function ProfilePicture({ contact, onClose }: any) {
                         </button>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

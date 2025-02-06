@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
-
 import PostBack from "../Buttons/PostBack";
 import ShareModal from "../PopUps/ShareModal";
 
 export default function PublicTopPost() {
-    const [showModal, setShowModal] = useState(false); // State for managing modal visibility
+    const [showModal, setShowModal] = useState<boolean>(false); 
 
-    // Function to toggle the modal
     const toggleShareModal = () => {
         setShowModal(!showModal);
     };
@@ -64,7 +62,7 @@ export default function PublicTopPost() {
             </div>
 
             {/* Share Modal Component */}
-            {showModal && <ShareModal />}
+            {showModal && <ShareModal isModalOpen={showModal} />}
         </div>
     );
 }

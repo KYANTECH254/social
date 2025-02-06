@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 import { Copy } from "lucide-react";
-import WhatsAppIcon from "../Icons/WhatsAppIcon";
+import BottomPopupModal from "./BottomPopupModal/BottomPopupModal";
 
-export default function ShareModal() {
-    // Function to copy link to clipboard
+export default function ShareModal(isModalOpen: any) {
+    const [isOpen, setIsOpen] = useState(isModalOpen);
+
     const copyLink = () => {
         navigator.clipboard.writeText(window.location.href);
         alert("Link copied!");
     };
 
-    // Function to handle social share
     const handleShare = (platform: string) => {
         const url = window.location.href;
         let shareUrl = '';
@@ -38,85 +38,69 @@ export default function ShareModal() {
             default:
                 return;
         }
-
-        // Open the share URL in a new tab
         window.open(shareUrl, '_blank');
     };
 
     return (
-        <>
-            <div
-                className="fixed bottom-0 left-0 right-0 border-t shadow-lg z-50 p-4 share-container"
-                style={{ animation: "slideIn 0.3s ease-out" }}>
-                <div className="items-center space-y-4 share-btns-align">
-                    <button
-                        onClick={copyLink}
-                        className="flex mt-4 items-center space-x-2 p-2 rounded-md transition share-icon-btn">
-                        <Copy size={24} className="share-btn" />
-                        <span>Copy Link</span>
-                    </button>
+        <BottomPopupModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+            {/* <div className="share-container"> */}
+            <div className="space-y-4 share-btns-align">
+                <button
+                    onClick={copyLink}
+                    className="flex mt-4 items-center rounded-md transition share-icon-btn">
+                    <Copy size={24} className="space-x-2 p-2 share-btn" />
+                    <span>Copy Link</span>
+                </button>
 
-                    {/* Facebook Share Button */}
-                    <button
-                        onClick={() => handleShare('facebook')}
-                        className="flex items-center space-x-2 p-2 rounded-md transition share-icon-btn">
-                        <img src="assets/images/fb.png" alt="Facebook" className="share-btn" />
-                        <span>Facebook</span>
-                    </button>
+                {/* Facebook Share Button */}
+                <button
+                    onClick={() => handleShare('facebook')}
+                    className="flex items-center rounded-md transition share-icon-btn">
+                    <img src="assets/images/fb.png" alt="Facebook" className="space-x-2 p-2 share-btn" />
+                    <span>Facebook</span>
+                </button>
 
-                    {/* Twitter Share Button */}
-                    <button
-                        onClick={() => handleShare('twitter')}
-                        className="flex items-center space-x-2 p-2 rounded-md transition share-icon-btn">
-                        <img src="assets/images/X.png" alt="Twitter" className="share-btn" />
-                        <span>Twitter</span>
-                    </button>
+                {/* Twitter Share Button */}
+                <button
+                    onClick={() => handleShare('twitter')}
+                    className="flex items-center rounded-md transition share-icon-btn">
+                    <img src="assets/images/X.png" alt="Twitter" className="space-x-2 p-2 share-btn" />
+                    <span>Twitter</span>
+                </button>
 
-                    {/* WhatsApp Share Button */}
-                    <button
-                        onClick={() => handleShare('whatsapp')}
-                        className="flex items-center space-x-2 p-2 rounded-md transition share-icon-btn">
-                                                <img src="assets/images/whatsapp.png" alt="WhatsApp" className="share-btn" />
-                        <span>WhatsApp</span>
-                    </button>
+                {/* WhatsApp Share Button */}
+                <button
+                    onClick={() => handleShare('whatsapp')}
+                    className="flex items-center rounded-md transition share-icon-btn">
+                    <img src="assets/images/whatsapp.png" alt="WhatsApp" className="space-x-2 p-2 share-btn" />
+                    <span>WhatsApp</span>
+                </button>
 
-                    {/* Email Share Button */}
-                    <button
-                        onClick={() => handleShare('email')}
-                        className="flex items-center space-x-2 p-2 rounded-md transition share-icon-btn">
-                        <img src="assets/images/email.png" alt="Email" className="share-btn" />
-                        <span>Email</span>
-                    </button>
+                {/* Email Share Button */}
+                <button
+                    onClick={() => handleShare('email')}
+                    className="flex items-center rounded-md transition share-icon-btn">
+                    <img src="assets/images/email.png" alt="Email" className="space-x-2 p-2 share-btn" />
+                    <span>Email</span>
+                </button>
 
-                    {/* LinkedIn Share Button */}
-                    <button
-                        onClick={() => handleShare('linkedin')}
-                        className="flex items-center space-x-2 p-2 rounded-md transition share-icon-btn">
-                        <img src="assets/images/linkedin-1.png" alt="LinkedIn" className="share-btn" />
-                        <span>LinkedIn</span>
-                    </button>
+                {/* LinkedIn Share Button */}
+                <button
+                    onClick={() => handleShare('linkedin')}
+                    className="flex items-center rounded-md transition share-icon-btn">
+                    <img src="assets/images/linkedin-1.png" alt="LinkedIn" className="space-x-2 p-2 share-btn" />
+                    <span>LinkedIn</span>
+                </button>
 
-                    {/* Telegram Share Button */}
-                    <button
-                        onClick={() => handleShare('telegram')}
-                        className="flex items-center space-x-2 p-2 rounded-md transition share-icon-btn">
-                        <img src="assets/images/telegram.png" alt="Telegram" className="share-btn" />
-                        <span>Telegram</span>
-                    </button>
-                </div>
+                {/* Telegram Share Button */}
+                <button
+                    onClick={() => handleShare('telegram')}
+                    className="flex items-center  rounded-md transition share-icon-btn">
+                    <img src="assets/images/telegram.png" alt="Telegram" className="space-x-2 p-2 share-btn" />
+                    <span>Telegram</span>
+                </button>
             </div>
-
-            {/* CSS Animation */}
-            <style jsx>{`
-                @keyframes slideIn {
-                    0% {
-                        transform: translateY(100%);
-                    }
-                    100% {
-                        transform: translateY(0);
-                    }
-                }
-            `}</style>
-        </>
+            {/* </div> */}
+        </BottomPopupModal>
     );
 }

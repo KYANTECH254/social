@@ -5,26 +5,30 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #000; /* Semi-transparent black background */
+    background-color: #000; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    z-index: 1000; /* Ensure it's on top of other content */
+    z-index: 1000;   
+    width: 100vw;
+    height: 100vh;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-/* Header with back button */
 .full-page-popup-header {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 15px;
     display: flex;
     align-items: center;
-    color: white;
+    color: var(--main-white-color);
     font-size: 20px;
 }
 
-.page-back-button {
+.full-page-popup-container .page-back-button {
     background: none;
     border: none;
     color: var(--main-text-color);
@@ -33,33 +37,32 @@
     align-items: center;
     font-size: 20px;
     margin-right: 10px;
-    column-gap: 20px;
+    column-gap: 10px;
     flex-direction: row;
-    outline: 1px solid red;
 }
 
-
-.profile-name {
+.full-page-popup-container .profile-name {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 500;
+    color: var(--main-grey-color);
 }
 
-/* Centered image container */
 .full-page-image-container {
     position: relative;
     width: 100%;
     top: 30%;
-    height: 40%; 
+    height: 50%; 
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: 1px solid red;
+    cursor: pointer;
+    /* outline: 1px solid red; */
 }
 
-.image-wrapper {
-    width: 80%; /* Adjust the size of the image */
+.full-page-popup-container .image-wrapper {
+    width: 100%; 
     height: auto;
     overflow: hidden;
     display: flex;
@@ -68,12 +71,12 @@
     cursor: pointer;
 }
 
-.profile-image {
+.full-page-popup-container .profile-image {
     width: 100%;
     height: auto;
     transition: transform 0.3s ease-in-out;
 }
 
-.zoomed {
-    transform: scale(2); /* Zoom the image */
+.full-page-popup-container .zoomed {
+    transform: scale(2); 
 }
