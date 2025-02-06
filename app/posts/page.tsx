@@ -26,7 +26,6 @@ export default function Page() {
             <ItemsNav />
             <StatusPosts posts={samplePosts} />
             <SwipeNavigator nextPage="/groups" prevPage="/chats" />
-
         </div>
     );
 }
