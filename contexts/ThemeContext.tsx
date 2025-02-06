@@ -26,7 +26,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   });
 
   useEffect(() => {
-    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.remove("light", "dark", "system");
     document.documentElement.classList.add(theme);
     localStorage.setItem("theme", theme);
   }, [theme]);

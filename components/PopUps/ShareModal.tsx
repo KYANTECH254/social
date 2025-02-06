@@ -43,7 +43,6 @@ export default function ShareModal(isModalOpen: any) {
 
     return (
         <BottomPopupModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-            {/* <div className="share-container"> */}
             <div className="space-y-4 share-btns-align">
                 <button
                     onClick={copyLink}
@@ -100,7 +99,6 @@ export default function ShareModal(isModalOpen: any) {
                     <span>Telegram</span>
                 </button>
             </div>
-            {/* </div> */}
         </BottomPopupModal>
     );
 }

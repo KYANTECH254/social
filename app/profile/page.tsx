@@ -20,30 +20,31 @@ export default function Page() {
     };
 
     return (
-        <main className="flex flex-col items-center p-4">
+        <main className="flex flex-col items-center">
             <TopNav />
             <ItemsNav />
 
             <div className="container">
                 <Back />
                 {/* Profile Image Section */}
-                <div className="relative mt-6 profile-img-container">
-                    <img
-                        src={profileImage}
-                        alt="Profile"
-                        className="w-32 h-32 rounded-full border-4 border-gray-300 object-cover profile-img default-color"
-                    />
-                    <input
-                        type="file"
-                        accept="image/*"
-                        className="absolute inset-0 opacity-0 cursor-pointer"
-                        onChange={handleImageChange}
-                    />
-                    <button className="absolute bottom-2 default-bg p-2 rounded-full shadow-md">
-                        <Camera size={18} />
-                    </button>
+                <div className="display-center">
+                    <div className="relative mt-6 profile-img-container">
+                        <img
+                            src={profileImage}
+                            alt="Profile"
+                            className="w-32 h-32 rounded-full border-4 border-gray-300 object-cover profile-img default-color"
+                        />
+                        <input
+                            type="file"
+                            accept="image/*"
+                            className="absolute inset-0 opacity-0 cursor-pointer"
+                            onChange={handleImageChange}
+                        />
+                        <button className="absolute right-2 bottom-2 default-bg p-2 rounded-full shadow-md">
+                            <Camera size={18} />
+                        </button>
+                    </div>
                 </div>
-
                 {/* User Info Section */}
                 <div className="mt-6 w-full user-info-container">
                     <div className="flex flex-col justify-between profile-cards">
