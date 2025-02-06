@@ -31,7 +31,7 @@
 .full-page-popup-container .page-back-button {
     background: none;
     border: none;
-    color: var(--main-text-color);
+    color: var(--main-white-color);
     cursor: pointer;
     display: flex;
     align-items: center;
