@@ -3,6 +3,7 @@
 import StatusPosts from "@/components/pages/PostStatus";
 import ItemsNav from "../../components/ItemsNav/ItemsNav";
 import TopNav from "../../components/TopNav/TopNav";
+import SwipeNavigator from "@/components/SwipeNavigator";
 
 type Post = {
     name: string;
@@ -24,6 +25,8 @@ export default function Page() {
             <TopNav />
             <ItemsNav />
             <StatusPosts posts={samplePosts} />
+            <SwipeNavigator nextPage="/groups" prevPage="/chats" />
+
         </div>
     );
 }

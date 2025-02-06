@@ -1,6 +1,7 @@
 import GroupsComponent from "@/components/pages/GroupsComponent";
 import ItemsNav from "../../components/ItemsNav/ItemsNav";
 import TopNav from "../../components/TopNav/TopNav";
+import SwipeNavigator from "@/components/SwipeNavigator";
 
 
 export default function Chats() {
@@ -9,6 +10,8 @@ export default function Chats() {
             <TopNav />
             <ItemsNav />
             <GroupsComponent />
+            <SwipeNavigator nextPage="/groups" prevPage="/posts" />
+
         </div>
     )
 }

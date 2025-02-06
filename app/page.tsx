@@ -1,5 +1,6 @@
 "use client"
 
+import SwipeNavigator from "@/components/SwipeNavigator";
 import FloatingIcons from "../components/FloatingIcons";
 import ItemsNav from "../components/ItemsNav/ItemsNav";
 import TopNav from "../components/TopNav/TopNav";
@@ -14,6 +15,7 @@ export default function Home() {
       <ItemsNav />
       <Saved />
       <FloatingIcons />
+      <SwipeNavigator nextPage="/chats" prevPage="/" />
     </main>
   );
 }
