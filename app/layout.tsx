@@ -1,12 +1,12 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Noto_Sans } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 import "./globals.css";
 import "../public/styles/main.css"
 import "../public/styles/static.css"
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
-const notoSans = Noto_Sans({
+const notoSans = Nunito({
   subsets: ['latin'],
   weight: ['400', '700'],
   style: ['normal', 'italic'],

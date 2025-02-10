@@ -14,7 +14,7 @@ const SwipeNavigator = ({ nextPage, prevPage }: SwipeNavigatorProps) => {
   let touchStartX = 0;
   let touchEndX = 0;
 
-  const minSwipeDistance = 50; 
+  const minSwipeDistance = 100; 
   const handleTouchStart = (e: TouchEvent) => {
     touchStartX = e.touches[0].clientX;
   };

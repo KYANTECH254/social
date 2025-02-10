@@ -9,8 +9,7 @@ export default function Chats() {
             <TopNav />
             <ItemsNav />
             <ChatsComponent />
-      <SwipeNavigator nextPage="/posts" prevPage="/" />
-
+            <SwipeNavigator nextPage="/posts" prevPage="/" />
         </div>
     )
 }

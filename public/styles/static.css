@@ -23,12 +23,20 @@ input[type="range"]::-webkit-slider-thumb {
     background: #2563EB;
     border-radius: 50%;
     cursor: pointer;
-  }
-  
-  input[type="range"]::-moz-range-thumb {
+}
+
+input[type="range"]::-moz-range-thumb {
     width: 12px;
     height: 12px;
     background: #2563EB;
     border-radius: 50%;
     cursor: pointer;
-  }
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--main-border-color);
+}
+
+.border-top {
+    border-top: 1px solid var(--main-border-color);
+}

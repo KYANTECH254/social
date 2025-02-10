@@ -64,13 +64,18 @@
     --main-strong-border: #222 !important;
 }
 
-
 html,
 body {
     background-color: var(--main-background-color);
     margin: 0;
     padding: 0;
+    scrollbar-width: none;
     position: relative;
+    -ms-overflow-style: none
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .top-nav {
@@ -119,7 +124,6 @@ body {
     position: relative;
     top: 50px;
 }
-
 
 .popup-bg-container {
     position: fixed;
