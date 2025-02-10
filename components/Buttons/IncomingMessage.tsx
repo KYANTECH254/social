@@ -8,10 +8,11 @@ interface IncomingMessageProps {
   id: string;
   text: string;
   time: string;
+  name:string;
   onReply: (messageId: string, isReply: boolean) => void;
 }
 
-export default function IncomingMessage({ id, text, time, onReply }: IncomingMessageProps) {
+export default function IncomingMessage({ id, text, time,name, onReply }: IncomingMessageProps) {
   const [showPopup, setShowPopup] = useState(false);
   const [translateX, setTranslateX] = useState(0);
   const holdTimerRef = useRef<NodeJS.Timeout | null>(null);

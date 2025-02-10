@@ -57,5 +57,7 @@ export function getFromLocalStorage(name: string): string | null {
 }
 
 export function GoBack() {
-  window.history.back();
+  if (typeof window !== "undefined" && window.history.length > 1) {
+    window.history.back();
+}
 };
