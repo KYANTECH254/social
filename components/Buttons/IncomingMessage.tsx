@@ -23,7 +23,7 @@ export default function IncomingMessage({ id, text, time,name, onReply }: Incomi
   const startHoldTimer = () => {
     holdTimerRef.current = setTimeout(() => {
       setShowPopup(true);
-    }, 500);
+    }, 1500);
   };
 
   const cancelHoldTimer = () => {

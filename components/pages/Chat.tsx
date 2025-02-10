@@ -77,7 +77,7 @@ export default function ChatComponent() {
           className="w-10 h-10 rounded-full mr-3 bg-grey-300"
         />
         <div>
-          <p className="font-semibold">Contact Name</p>
+          <p className="font-semibold text-black dark:text-white">Contact Name</p>
           <p className="text-sm text-gray-500">Online</p>
         </div>
         <div className="ml-auto flex space-x-4">
