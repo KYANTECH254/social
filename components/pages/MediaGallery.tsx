@@ -67,7 +67,7 @@ export default function MediaGallery({ isOpen, onClose, onSelectFiles }: MediaGa
           <input
             ref={fileInputRef}
             type="file"
-            accept="image/*,video/*"
+            accept="/*"
             multiple
             onChange={handleFilesChange}
             className="hidden"

@@ -11,7 +11,6 @@ export default function Chats() {
             <ItemsNav />
             <GroupsComponent />
             <SwipeNavigator nextPage="/groups" prevPage="/posts" />
-
         </div>
     )
 }

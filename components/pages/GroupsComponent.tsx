@@ -3,11 +3,12 @@
 import { formatTimestamp } from "@/lib/Functions";
 import { useState, useRef, useEffect } from "react";
 import ProfilePicture from "../PopUps/ProfilePicture";
+import { useRouter } from 'next/navigation';
 
 export default function GroupsComponent() {
     const [viewProfile, setViewProfile] = useState(false);
     const [selectedContact, setSelectedContact] = useState(null);
-
+    const router = useRouter();
     const chats = [
         {
             name: "Mabanzenga Nation",
@@ -47,13 +48,16 @@ export default function GroupsComponent() {
                 setSelectedContact(null);
             }
         };
-    
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
-    
+
+    function OpenChat() {
+        router.push('/groups/chat');
+    }
 
     return (
         <>
@@ -67,9 +71,9 @@ export default function GroupsComponent() {
                             onClick={() => {
                                 // setSelectedContact(chat);
                                 setViewProfile(true);
-                              }}
+                            }}
                         />
-                        <div className="flex-1">
+                        <div onClick={OpenChat} className="flex-1">
                             <span className="text-lg font-medium block chat-items-name">
                                 {chat.name}
                             </span>

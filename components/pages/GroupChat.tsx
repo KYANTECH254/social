@@ -10,8 +10,6 @@ import {
   Paperclip,
   Send
 } from 'lucide-react';
-import IncomingMessage from '../Buttons/IncomingMessage';
-import OutgoingMessage from '../Buttons/OutgoingMessages';
 import ReplyPreview from '../Buttons/IsReplyMessage';
 import MediaGallery from './MediaGallery';
 const VoiceChatInput = dynamic(() => import('../Buttons/VoiceRecorder'), { ssr: false });
@@ -19,8 +17,10 @@ const VoiceChatInput = dynamic(() => import('../Buttons/VoiceRecorder'), { ssr: 
 import { GoBack } from '@/lib/Functions';
 import Emoji from '../Buttons/Emoji';
 import ChatPopUpMenu from '../PopUps/ChatPopUp';
+import GroupIncomingMessage from '../Buttons/GroupIncomingMessage';
+import GroupOutgoingMessage from '../Buttons/GroupOutgoingMessage';
 
-export default function ChatComponent() {
+export default function GroupChatComponent() {
   const [message, setMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [reply, setReply] = useState<any>(null);
@@ -173,7 +173,7 @@ export default function ChatComponent() {
             <ArrowLeft size={20} />
           </button>
           <img
-            src="assets/images/profile-bg.png"
+            src="../../assets/images/profile-bg.png"
             alt="Profile"
             className="w-10 h-10 rounded-full mr-3 bg-gray-700"
           />
@@ -194,7 +194,7 @@ export default function ChatComponent() {
         <div className="flex-1 overflow-y-auto p-4 space-y-4 text-white">
           {messages.map((msg) =>
             msg.type === 'incoming' ? (
-              <IncomingMessage
+              <GroupIncomingMessage
                 key={msg.id}
                 id={msg.id}
                 text={msg.text}
@@ -206,7 +206,7 @@ export default function ChatComponent() {
                 onReply={handleReply}
               />
             ) : (
-              <OutgoingMessage
+              <GroupOutgoingMessage
                 key={msg.id}
                 id={msg.id}
                 text={msg.text}

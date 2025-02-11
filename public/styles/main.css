@@ -64,6 +64,10 @@
     --main-strong-border: #222 !important;
 }
 
+* {
+    user-select: none;
+}
+
 html,
 body {
     background-color: var(--main-background-color);
@@ -71,7 +75,8 @@ body {
     padding: 0;
     scrollbar-width: none;
     position: relative;
-    -ms-overflow-style: none
+    -ms-overflow-style: none;
+    auto-select: none;
 }
 
 ::-webkit-scrollbar {

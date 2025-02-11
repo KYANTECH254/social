@@ -23,7 +23,7 @@ interface OutgoingMessageProps {
   onReply: (messageId: string, isReply: boolean) => void;
 }
 
-export default function OutgoingMessage({ id, text, time, name, isReply, replyID, replyMessage, onReply }: OutgoingMessageProps) {
+export default function GroupOutgoingMessage({ id, text, time, name, isReply, replyID, replyMessage, onReply }: OutgoingMessageProps) {
   const [showPopup, setShowPopup] = useState(false);
   const [translateX, setTranslateX] = useState(0);
   const holdTimerRef = useRef<NodeJS.Timeout | null>(null);

@@ -1,29 +1,37 @@
 "use client"
 import { useState, useRef } from 'react';
 import BottomPopupModal from '../PopUps/BottomPopupModal/BottomPopupModal';
-import ThreeDashesIcon from '../Icons/TripleDashIcon';
 import { ClipboardCopyIcon, Reply, Trash2, Forward } from 'lucide-react';
+
+interface ReplyMessage {
+  id: string;
+  text: string;
+  time: string;
+  name: string;
+}
 
 interface IncomingMessageProps {
   id: string;
   text: string;
   time: string;
-  name:string;
+  name: string;
+  isReply: boolean;
+  replyID: string | null;
+  replyMessage?: ReplyMessage;
   onReply: (messageId: string, isReply: boolean) => void;
 }
 
-export default function IncomingMessage({ id, text, time,name, onReply }: IncomingMessageProps) {
+export default function IncomingMessage({ id, text, time, name, isReply, replyID, replyMessage, onReply }: IncomingMessageProps) {
   const [showPopup, setShowPopup] = useState(false);
   const [translateX, setTranslateX] = useState(0);
   const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartXRef = useRef<number | null>(null);
-  const swipeThreshold = 50; // Minimum swipe in pixels to trigger reply
+  const swipeThreshold = 50;
 
-  // Long-press logic to open the popup
   const startHoldTimer = () => {
     holdTimerRef.current = setTimeout(() => {
       setShowPopup(true);
-    }, 1500);
+    }, 500);
   };
 
   const cancelHoldTimer = () => {
@@ -33,7 +41,6 @@ export default function IncomingMessage({ id, text, time,name, onReply }: Incomi
     }
   };
 
-  // Touch event handlers for swipe-right
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartXRef.current = e.touches[0].clientX;
     startHoldTimer();
@@ -44,7 +51,7 @@ export default function IncomingMessage({ id, text, time,name, onReply }: Incomi
       const deltaX = e.touches[0].clientX - touchStartXRef.current;
       if (deltaX > 0) {
         cancelHoldTimer();
-        const maxSwipe = window.innerWidth * 0.15; // Limit swipe to 15% of screen width
+        const maxSwipe = window.innerWidth * 0.15;
         setTranslateX(Math.min(deltaX, maxSwipe));
       }
     }
@@ -59,7 +66,6 @@ export default function IncomingMessage({ id, text, time,name, onReply }: Incomi
     touchStartXRef.current = null;
   };
 
-  // Modal actions (for long press popup)
   const handleReply = () => {
     onReply(id, true);
     setShowPopup(false);
@@ -84,6 +90,8 @@ export default function IncomingMessage({ id, text, time,name, onReply }: Incomi
 
   return (
     <>
+
+
       <div
         className="flex items-end"
         onMouseDown={startHoldTimer}
@@ -97,9 +105,16 @@ export default function IncomingMessage({ id, text, time,name, onReply }: Incomi
           transition: translateX === 0 ? 'transform 0.3s ease-out' : 'none',
         }}
       >
-        <div className="p-3 rounded-lg shadow bg-gray-800">
+
+        <div className={`${isReply && replyMessage ? 'p-1' : 'p-3'} rounded-lg shadow bg-gray-800`}>
+          {isReply && replyMessage && (
+            <div className="mb-2 p-2 bg-gray-700 rounded-md border-l-4 border-gray-500">
+              <p className="text-xs font-bold text-gray-500">{replyMessage.name}</p>
+              <p className="text-sm line-clamp-2">{replyMessage.text}</p>
+            </div>
+          )}
           <p>{text}</p>
-          <div className="flex items-center justify-end mt-2 space-x-2">
+          <div className="flex items-center justify-end space-x-2">
             <span className="text-xs text-gray-500">{time}</span>
           </div>
         </div>

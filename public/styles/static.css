@@ -40,3 +40,7 @@ input[type="range"]::-moz-range-thumb {
 .border-top {
     border-top: 1px solid var(--main-border-color);
 }
+
+.no-select {
+    user-select: none;
+}
