@@ -59,5 +59,15 @@ export function getFromLocalStorage(name: string): string | null {
 export function GoBack() {
   if (typeof window !== "undefined" && window.history.length > 1) {
     window.history.back();
-}
+  }
 };
+
+export default function RandomTextColor() {
+  const colors = [
+    "red-500", "blue-500", "green-500",
+    "yellow-500", "purple-500", "pink-500",
+    "orange-500", "teal-500", "indigo-500"
+  ];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  return randomColor;
+}

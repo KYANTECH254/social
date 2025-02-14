@@ -1,14 +1,10 @@
 "use client";
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ArrowLeft,
   EllipsisVertical,
-  Mic,
-  Smile,
-  Camera,
-  Paperclip,
-  Send
+  ChevronsDown, ChevronsUp,
 } from 'lucide-react';
 import IncomingMessage from '../Buttons/IncomingMessage';
 import OutgoingMessage from '../Buttons/OutgoingMessages';
@@ -19,14 +15,80 @@ const VoiceChatInput = dynamic(() => import('../Buttons/VoiceRecorder'), { ssr: 
 import { GoBack } from '@/lib/Functions';
 import Emoji from '../Buttons/Emoji';
 import ChatPopUpMenu from '../PopUps/ChatPopUp';
+import ChatInput from '../Inputs/ChatInput';
+import ChatSearchInput from '../Inputs/ChatSearchInput';
 
 export default function ChatComponent() {
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+
   const [message, setMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [reply, setReply] = useState<any>(null);
   const [showGallery, setShowGallery] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showScrollBottom, setShowScrollBottom] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false)
+
+
+  useEffect(() => {
+    const container = messagesContainerRef.current;
+
+    const handleScroll = () => {
+      if (container) {
+        const { scrollTop, scrollHeight, clientHeight } = container;
+        setShowScrollTop(scrollTop > 100);
+        setShowScrollBottom(scrollHeight - (scrollTop + clientHeight) > 100);
+      }
+    };
+
+    container?.addEventListener('scroll', handleScroll);
+    return () => container?.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, []);
+
+  useEffect(() => {
+    const container = messagesContainerRef.current;
+    let scrollTimeout: NodeJS.Timeout;
+
+    const detectScroll = () => {
+      if (container) {
+        setIsScrolling(true);
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          setIsScrolling(false);
+        }, 3000);
+      }
+    };
+    container?.addEventListener("scroll", detectScroll);
+    return () => {
+      container?.removeEventListener("scroll", detectScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+
+  const scrollToBottom = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollToTop = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const messages = [
     {
@@ -110,32 +172,6 @@ export default function ChatComponent() {
     setMessage(e.target.value);
   };
 
-  const handleSend = () => {
-    if (message.trim()) {
-      // Construct the new message object, including the reply message object if available.
-      const newMessage = {
-        id: Date.now().toString(),
-        name: "You",
-        text: message,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        type: "outgoing",
-        isReply: reply !== null,
-        // If replying, attach the reply message object; otherwise, leave it undefined.
-        reply: reply ? { ...reply } : undefined,
-      };
-
-      console.log('Sending message:', newMessage);
-      // Here you might want to update your messages list or send the message to a server
-
-      // Clear the input and cancel any reply
-      setMessage('');
-      setReply(null);
-    } else {
-      setIsRecording(true);
-      console.log('Show voice recorder component');
-    }
-  };
-
   const handleReply = (messageId: string) => {
     const messageToReply = messages.find((msg) => msg.id === messageId);
     if (messageToReply) {
@@ -164,34 +200,54 @@ export default function ChatComponent() {
 
   return (
     <>
-      {showMenu && <ChatPopUpMenu />}
+      {showMenu && <ChatPopUpMenu setShowSearch={setShowSearch} setShowMenu={setShowMenu}/>}
 
       <div className="max-w-md mx-auto flex flex-col h-[90vh]">
+
         {/* Chat Header */}
-        <div className="flex items-center p-4 border-bottom shadow-lg">
-          <button className="mr-4 text-[var(--main-text-color)]" onClick={GoBack}>
-            <ArrowLeft size={20} />
-          </button>
-          <img
-            src="assets/images/profile-bg.png"
-            alt="Profile"
-            className="w-10 h-10 rounded-full mr-3 bg-gray-700"
-          />
-          <div>
-            <p className="font-semibold text-[var(--main-text-color)]">Contact Name</p>
-            <p className="text-sm text-blue-500">Online</p>
-          </div>
-          <div className="ml-auto flex space-x-4">
-            <button className="flex items-center justify-center shadow-lg text-[var(--main-text-color)] w-10 h-10 rounded-full hover:bg-[var(--main-hover-icons-color)]"
-              onClick={() => setShowMenu(prev => !prev)}
-            >
-              <EllipsisVertical size={20} />
-            </button>
-          </div>
-        </div>
+        {!showSearch && (
+          <>
+            <div className="flex items-center p-4 border-bottom shadow-lg">
+              <button className="mr-4 text-[var(--main-text-color)]" onClick={GoBack}>
+                <ArrowLeft size={20} />
+              </button>
+              <img
+                src="assets/images/profile-bg.png"
+                alt="Profile"
+                className="w-10 h-10 rounded-full mr-3 bg-gray-700"
+              />
+              <div>
+                <p className="font-semibold text-[var(--main-text-color)]">Contact Name</p>
+                <p className="text-sm text-blue-500">Online</p>
+              </div>
+              <div className="ml-auto flex space-x-4">
+                <button className="flex items-center justify-center shadow-lg text-[var(--main-text-color)] w-10 h-10 rounded-full hover:bg-[var(--main-hover-icons-color)]"
+                  onClick={() => setShowMenu(prev => !prev)}
+                >
+                  <EllipsisVertical size={20} />
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Chat Search */}
+        {showSearch && (
+          <>
+            <ChatSearchInput
+              handleInputChange={handleInputChange}
+              setShowSearch={setShowSearch}
+              setShowMenu={setShowMenu}
+              openCamera={openCamera}
+              setShowGallery={setShowGallery}
+            />
+          </>
+        )}
 
         {/* Chat Messages Area */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 text-white">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 text-white"
+          ref={messagesContainerRef}
+        >
           {messages.map((msg) =>
             msg.type === 'incoming' ? (
               <IncomingMessage
@@ -225,46 +281,46 @@ export default function ChatComponent() {
         {reply && <ReplyPreview reply={reply} cancelReply={cancelReply} />}
 
         {/* Chat Input Area */}
-        <div className="p-4 border-top">
-          <div className="flex items-center space-x-3">
-            <div className="relative flex-1">
-              <input
-                type="text"
-                placeholder="Message..."
-                value={message}
-                onChange={handleInputChange}
-                className="w-full border border-gray-300 rounded-full pl-10 pr-20 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--main-color)]"
-              />
-              <button
-                className="absolute inset-y-0 left-0 flex items-center pl-2"
-                onClick={() => console.log('Open emoji picker')}
-              >
-                <Smile
-                  onClick={() => setShowEmojiPicker(prev => !prev)}
-                  size={20}
-                  className="text-gray-600 cursor-pointer"
-                />
-              </button>
-              <div className="absolute inset-y-0 right-0 flex items-center space-x-2 pr-2">
-                {message.trim() === '' && (
-                  <button className="text-gray-600" onClick={openCamera}>
-                    <Camera size={20} />
-                  </button>
-                )}
-                <button className="text-gray-600" onClick={() => setShowGallery(true)}>
-                  <Paperclip size={20} />
-                </button>
-              </div>
-            </div>
+        {!showSearch && (
+          <>
+            <ChatInput
+              setMessage={setMessage}
+              setShowEmojiPicker={setShowEmojiPicker}
+              openCamera={openCamera}
+              setShowGallery={setShowGallery}
+              message={message}
+              setReply={setReply}
+              reply={reply}
+              isRecording={isRecording}
+              handleInputChange={handleInputChange}
+            />
+          </>
+        )}
 
-            <button
-              className="w-10 h-10 flex items-center justify-center bg-[var(--main-color)] rounded-full text-white"
-              onClick={handleSend}
-            >
-              {message.trim() === '' ? <Mic size={24} /> : <Send size={20} />}
-            </button>
+        {/* Add scroll buttons */}
+        {isScrolling && (
+          <div className="absolute right-4 bottom-24 space-y-2 z-10">
+            {showScrollTop && (
+              <button
+                onClick={scrollToTop}
+                className={`w-10 h-10 bg-[var(--main-color)] rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--main-hover-color)] 
+                            transition-opacity duration-300 ${showScrollTop ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              >
+                <ChevronsUp className="text-white" size={20} />
+              </button>
+            )}
+            {showScrollBottom && (
+              <button
+                onClick={scrollToBottom}
+                className={`w-10 h-10 bg-[var(--main-color)] rounded-full flex items-center justify-center shadow-lg hover:bg-[var(--main-hover-color)] 
+                            transition-opacity duration-300 ${showScrollBottom ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              >
+                <ChevronsDown className="text-white" size={20} />
+              </button>
+            )}
           </div>
-        </div>
+
+        )}
 
         {showEmojiPicker && <Emoji onSelect={handleEmojiSelect} />}
         {showGallery && (

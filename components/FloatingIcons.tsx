@@ -8,7 +8,7 @@ export default function FloatingIcons() {
         // { text: "Settings", icon: Settings },
         // { text: "Profile", icon: User },
 
-        { text: "Acquaintances", icon: "👥", border: false , link: "/people"},
+        // { text: "Acquaintances", icon: "👥", border: false , link: "/people"},
         { text: "Public", icon: "🌍", border: false , link: "/public"},
         { text: "Settings", icon: "⚙️", border:false , link: "/settings"},
         { text: "Profile", icon: "👤", border: true , link: "/profile"},

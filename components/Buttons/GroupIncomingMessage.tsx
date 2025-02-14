@@ -8,6 +8,7 @@ interface ReplyMessage {
     text: string;
     time: string;
     name: string;
+    color: string;
 }
 
 interface IncomingMessageProps {
@@ -15,13 +16,14 @@ interface IncomingMessageProps {
     text: string;
     time: string;
     name: string;
+    color: string;
     isReply: boolean;
     replyID: string | null;
     replyMessage?: ReplyMessage;
     onReply: (messageId: string, isReply: boolean) => void;
 }
 
-export default function GroupIncomingMessage({ id, text, time, name, isReply, replyID, replyMessage, onReply }: IncomingMessageProps) {
+export default function GroupIncomingMessage({ id, text, time, name, isReply, replyID, replyMessage, onReply, color }: IncomingMessageProps) {
     const [showPopup, setShowPopup] = useState(false);
     const [translateX, setTranslateX] = useState(0);
     const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -103,17 +105,17 @@ export default function GroupIncomingMessage({ id, text, time, name, isReply, re
                     transition: translateX === 0 ? 'transform 0.3s ease-out' : 'none',
                 }}
             >
-
                 <div className="flex flex-row">
-                    <img src="./../assets/images/profile-bg.png" alt="Profile" className='w-8 h-8 rounded-full bg-gray-700 -ml-2 mr-1'/>
+                    <img src="./../assets/images/profile-bg.png" alt="Profile" className='w-8 h-8 rounded-full bg-gray-700 -ml-2 mr-1' />
                     <div className={`${isReply && replyMessage ? 'p-1' : 'p-3'} rounded-lg shadow bg-gray-800`}>
+                        <div className={`font-semibold text-xs text-${color} ${isReply && replyMessage ? 'p-1' : ''}`}>EBENEZER</div>
                         {isReply && replyMessage && (
                             <div className="mb-2 p-2 bg-gray-700 rounded-md border-l-4 border-gray-500">
                                 <p className="text-xs font-bold text-gray-500">{replyMessage.name}</p>
                                 <p className="text-sm line-clamp-2">{replyMessage.text}</p>
                             </div>
                         )}
-                        <p>{text}</p>
+                        <p className={isReply ? 'ml-1' : ''}>{text}</p>
                         <div className="flex items-center justify-end space-x-2">
                             <span className="text-xs text-gray-500">{time}</span>
                         </div>
