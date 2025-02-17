@@ -5,15 +5,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Heart, MessageCircle, Bookmark, ChevronLeft, ChevronRight } from 'lucide-react';
 import CustomVideoPlayer from '../CustomVideoPlayer';
-
-interface Status {
-    id: string;
-    type: 'image' | 'video' | 'text';
-    content: string;
-}
+import { StatusPost } from '@/types/types';
+import BottomPopupModal from '../PopUps/BottomPopupModal/BottomPopupModal';
+import CommentSection from '../CommentSection';
 
 interface StatusViewerProps {
-    statuses: Status[];
+    statuses: StatusPost[];
 }
 
 const StatusViewer = ({ statuses }: StatusViewerProps) => {
@@ -22,6 +19,9 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
     const [likes, setLikes] = useState<{ [key: string]: number }>({});
     const [comments, setComments] = useState<{ [key: string]: number }>({});
     const [saves, setSaves] = useState<{ [key: string]: number }>({});
+
+    const [showComments, setShowComments] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleLike = (statusId: string) => {
         setLikes(prev => ({ ...prev, [statusId]: (prev[statusId] || 0) + 1 }));
@@ -91,7 +91,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                 )}
 
                 {currentStatus.type === 'text' && (
-                    <div className="text-white text-4xl text-center p-8">
+                    <div className="text-white text-4xl text-center p-8 word-break break-all">
                         {currentStatus.content}
                     </div>
                 )}
@@ -108,7 +108,12 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                 </button>
 
                 <button
-                    onClick={() => handleComment(currentStatus.id)}
+                    onClick={() => {
+                        handleComment(currentStatus.id);
+                        // setShowComments(prev => !prev);
+                        setIsOpen(prev => !prev);
+                        console.log("showing...");
+                    }}
                     className="flex flex-col items-center text-white"
                 >
                     <MessageCircle className="w-8 h-8 mb-1" />
@@ -146,6 +151,15 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                     )}
                 </div>
             )}
+
+            {/* Comment Section */}
+            {/* {showComments && ( */}
+                <>
+                    <BottomPopupModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                        <CommentSection />
+                    </BottomPopupModal>
+                </>
+            {/* )} */}
         </div>
     );
 };

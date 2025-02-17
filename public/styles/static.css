@@ -16,6 +16,10 @@
     row-gap: 5px;
 }
 
+.small-font {
+    font-size: 8px;
+}
+
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 12px;
