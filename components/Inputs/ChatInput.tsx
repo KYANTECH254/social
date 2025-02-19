@@ -1,4 +1,4 @@
-import RandomTextColor from '@/lib/Functions';
+import { RandomTextColor } from '@/lib/Functions';
 import {
     Mic,
     Smile,
@@ -17,7 +17,7 @@ export default function ChatInput({
     setReply,
     reply,
     handleInputChange
- }: any) {
+}: any) {
 
     const handleSend = () => {
         if (message.trim()) {

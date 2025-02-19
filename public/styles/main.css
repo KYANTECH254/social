@@ -719,7 +719,7 @@ input:checked+.slider:before {
     display: flex;
     flex-direction: row;
     padding-left: 5px;
-    margin-top: 0px;
+    /* margin-top: 0px; */
 }
 
 .comment-modal-menu {

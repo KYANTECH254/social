@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Heart, MessageCircle, Bookmark, ChevronLeft, ChevronRight } from 'lucide-react';
-import CustomVideoPlayer from '../CustomVideoPlayer';
+import CustomVideoPlayer from '../VideoPlayer/CustomVideoPlayer';
 import { StatusPost } from '@/types/types';
 import BottomPopupModal from '../PopUps/BottomPopupModal/BottomPopupModal';
 import CommentSection from '../CommentSection';
@@ -57,7 +57,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
     const currentStatus = statuses[currentIndex];
 
     return (
-        <div className="relative h-screen w-full overflow-hidden bg-black">
+        <div className="relative h-screen w-full items-center justify-center overflow-hidden bg-black">
             {/* Progress Bar */}
             <div className="absolute top-4 left-0 right-0 z-50 flex justify-center gap-1 px-4">
                 {statuses.map((_, index) => (
@@ -74,7 +74,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
             </div>
 
             {/* Status Content */}
-            <div className="relative h-full w-full flex items-center justify-center">
+            <div className="relative h-full max-w-96 flex items-center justify-center">
                 {currentStatus.type === 'image' && (
                     <img
                         src={currentStatus.content}
@@ -153,13 +153,11 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
             )}
 
             {/* Comment Section */}
-            {/* {showComments && ( */}
                 <>
                     <BottomPopupModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
                         <CommentSection />
                     </BottomPopupModal>
                 </>
-            {/* )} */}
         </div>
     );
 };

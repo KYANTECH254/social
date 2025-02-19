@@ -64,7 +64,7 @@ export const samplePosts: Posts[] = [
             {
                 type: "video",
                 statusText: "My favorite video of the day!",
-                path: "/assets/images/video.mp4",
+                path: "/assets/images/short.mp4",
                 bgColor: null,
                 // 53 minutes ago relative to 17 Feb 2025 17:03
                 timestamp: "2025-02-17T16:10:00Z",
