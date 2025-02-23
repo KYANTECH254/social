@@ -1,5 +1,4 @@
 "use client"
-
 import { ThumbsUp } from "lucide-react";
 import { useState } from "react";
 
