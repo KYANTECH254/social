@@ -34,6 +34,6 @@ export type Post = {
 export type StatusPost = {
     id: string;
     type: StatusType;
-    content: string;
+    content?: string;
 }
 
