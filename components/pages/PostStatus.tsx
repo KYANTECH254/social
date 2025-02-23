@@ -33,7 +33,7 @@ export default function StatusPosts({ posts }: StatusPostsProps) {
     }, [posts]);
 
     return (
-        <div className="space-y-4 w-full max-w-md mx-auto">
+        <div className="space-y-4 w-full max-w-md mx-auto p-3">
             {/* Recent updates section */}
             <div className="flex items-center justify-between cursor-pointer" onClick={() => setRecentOpen(prev => !prev)}>
                 <h2 className="">Recent updates</h2>

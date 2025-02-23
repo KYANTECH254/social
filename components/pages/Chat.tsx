@@ -17,6 +17,7 @@ import Emoji from '../Buttons/Emoji';
 import ChatPopUpMenu from '../PopUps/ChatPopUp';
 import ChatInput from '../Inputs/ChatInput';
 import ChatSearchInput from '../Inputs/ChatSearchInput';
+import Link from 'next/link';
 
 export default function ChatComponent() {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -200,7 +201,7 @@ export default function ChatComponent() {
 
   return (
     <>
-      {showMenu && <ChatPopUpMenu setShowSearch={setShowSearch} setShowMenu={setShowMenu}/>}
+      {showMenu && <ChatPopUpMenu setShowSearch={setShowSearch} setShowMenu={setShowMenu} />}
 
       <div className="max-w-md mx-auto flex flex-col h-[90vh]">
 
@@ -216,12 +217,14 @@ export default function ChatComponent() {
                 alt="Profile"
                 className="w-10 h-10 rounded-full mr-3 bg-gray-700"
               />
-              <div>
-                <p className="font-semibold text-[var(--main-text-color)]">Contact Name</p>
-                <p className="text-sm text-blue-500">Online</p>
-              </div>
+              <Link href="/chat/info">
+                <div>
+                  <p className="font-semibold text-[var(--main-text-color)]">Contact Name</p>
+                  <p className="text-sm text-blue-500">Online</p>
+                </div>
+              </Link>
               <div className="ml-auto flex space-x-4">
-                <button className="flex items-center justify-center shadow-lg text-[var(--main-text-color)] w-10 h-10 rounded-full hover:bg-[var(--main-hover-icons-color)]"
+                <button className="flex items-center justify-center text-[var(--main-text-color)] w-10 h-10 rounded-full hover:bg-[var(--main-hover-icons-color)]"
                   onClick={() => setShowMenu(prev => !prev)}
                 >
                   <EllipsisVertical size={20} />

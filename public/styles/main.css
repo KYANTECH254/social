@@ -104,6 +104,16 @@ body {
     color: var(--main-text-color);
 }
 
+.first-container {
+    display: flex;
+    flex-direction: column;
+    color: var(--main-text-color);
+    background-color: var(--main-background-color);
+    height: 100%;
+    position: relative;
+    top: 50px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -286,7 +296,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
     color: var(--main-text-color);
     background-color: var(--main-background-color);
     height: 100%;
