@@ -1,6 +1,6 @@
 "use client";
 import { useTheme } from "@/hooks/useTheme";
-import { User, PaintBucket, Shield, HelpCircle, Download, LogOut, Settings, Users } from "lucide-react";
+import { User, PaintBucket, Shield, HelpCircle, Download, LogOut, Settings, Users, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 export default function SettingsContainer() {
@@ -8,7 +8,7 @@ export default function SettingsContainer() {
         { name: "Profile", icon: <User size={20} />, link: "/profile" },
         { name: "Theme", icon: <PaintBucket size={20} />, link: "/settings/theme" },
         { name: "Privacy", icon: <Shield size={20} />, link: "/settings/privacy" },
-        { name: "Security", icon: <Shield size={20} />, link: "/settings/security" },
+        { name: "Security", icon: <ShieldCheck size={20} />, link: "/settings/security" },
         { name: "Account Management", icon: <Settings size={20} />, link: "/settings/account" },
         { name: "Help", icon: <HelpCircle size={20} />, link: "/help" },
         { name: "Invite a Friend", icon: <Users size={20} />, link: "/invite" },

@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, ChevronLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { GoBack } from "@/lib/Functions";
 export default function Back({ title }: any) {
   return (

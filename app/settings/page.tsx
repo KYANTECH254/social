@@ -1,6 +1,6 @@
 import ItemsNav from "@/components/ItemsNav/ItemsNav";
 import TopNav from "@/components/TopNav/TopNav";
-import SettingsContainer from "@/components/pages/Settings";
+import SettingsContainer from "@/components/Settings/Settings";
 
 export default function Page() {
     return (
