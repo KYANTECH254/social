@@ -35,7 +35,7 @@ export default function ChatLock() {
     return (
         <div className="first-container">
             <Back title="Chat Lock" />
-            <div className="flex flex-col items-center justify-center min-h-[300px] bg-[var(--main-background-color)] text-[var(--main-text-color)] shadow-lg p-6 rounded-2xl max-w-sm mx-auto">
+            <div className="flex flex-col items-center justify-center min-h-[300px] bg-[var(--main-background-color)] text-[var(--main-text-color)] p-6 rounded-2xl max-w-sm mx-auto">
                 <h2 className="text-xl font-semibold mb-4">Set Chat Lock PIN</h2>
                 <p className="text-sm text-center p-2">Secure your chats using a 4-digit PIN. You will be asked to enter this PIN each time you open the app.</p>
                 

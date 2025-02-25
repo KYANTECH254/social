@@ -35,14 +35,14 @@ export default function StatusContacts() {
     return (
         <div className="first-container">
             <Back title="Status Privacy" />
-            <div className="max-w-md mx-auto bg-[var(--main-background-color)] text-[var(--main-text-color)] shadow-lg rounded-2xl">
+            <div className="mx-auto bg-[var(--main-background-color)] text-[var(--main-text-color)]">
                 <h2 className="text-xl font-semibold mb-4">Who can see my status updates?</h2>
 
                 <div className="space-y-2">
                     {["Everybody", "Nobody", "My Contacts Except"].map((option) => (
                         <label
                             key={option}
-                            className="flex items-center justify-between p-3 border rounded-lg cursor-pointer"
+                            className="flex items-center justify-between p-3 border cursor-pointer"
                         >
                             <span className="text-lg">{option}</span>
                             <input
@@ -61,7 +61,7 @@ export default function StatusContacts() {
                 {selectedOption === "My Contacts Except" && (
                     <div className="mt-6">
                         <h3 className="text-lg font-medium mb-2">Select contacts to exclude</h3>
-                        <div className="overflow-y-auto rounded-lg">
+                        <div className="overflow-y-auto">
                             {contacts.map((contact) => (
                                 <label
                                     key={contact.id}

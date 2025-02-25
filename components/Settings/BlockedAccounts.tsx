@@ -21,10 +21,8 @@ export default function BlockedAccounts() {
     return (
         <div className="first-container">
             <Back title="Blocked Accounts" />
-            <div className="flex flex-col">
-                <div className="p-3">
-                    <h3 className="text-lg font-medium mb-2">All your blocked contacts</h3>
-                    <div className="overflow-y-auto rounded-lg">
+            <div className="flex flex-col p-2">
+                    <div className="overflow-y-auto">
                         {contacts.map((contact) => (
                             <label
                                 key={contact.id}
@@ -43,7 +41,7 @@ export default function BlockedAccounts() {
                             </label>
                         ))}
                     </div>
-                </div>
+            
             </div>
         </div>
     );

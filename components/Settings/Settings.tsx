@@ -11,7 +11,7 @@ export default function SettingsContainer() {
         { name: "Security", icon: <ShieldCheck size={20} />, link: "/settings/security" },
         { name: "Account Management", icon: <Settings size={20} />, link: "/settings/account" },
         { name: "Help", icon: <HelpCircle size={20} />, link: "/help" },
-        { name: "Invite a Friend", icon: <Users size={20} />, link: "/invite" },
+        { name: "Invite a Friend", icon: <Users size={20} />, link: "/settings/invite" },
         { name: "Download App", icon: <Download size={20} />, link: "/download/app" },
         { name: "Logout", icon: <LogOut size={20} />, link: "/logout" },
     ];
