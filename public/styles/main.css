@@ -409,9 +409,8 @@ body {
     margin: 10px;
     padding: 10px;
     border-radius: 5px;
-    width: 100px;
+    min-width: 100px;
     color: var(--main-text-color);
-    background-color: var(--main-hover-background-color);
 }
 
 .post-back-button {
@@ -420,12 +419,10 @@ body {
     border-radius: 5px;
     width: 100px;
     color: var(--main-text-color);
-    background-color: transparent;
 }
 
 .back-button:hover {
     color: var(--main-text-color);
-    background-color: var(--main-hover-icons-color);
 }
 
 .mode-active {

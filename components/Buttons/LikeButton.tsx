@@ -19,7 +19,7 @@ export default function LikeButton() {
             <ThumbsUp
                 size={20}
                 className={`transition-colors duration-300 ${
-                    liked ? "default-color" : "default-text-color "
+                    liked ? "default-color" : "default-text-color"
                 }`}
                 fill={liked ? "#2563EB " : "none"}
             />

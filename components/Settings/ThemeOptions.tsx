@@ -1,11 +1,8 @@
 "use client";
-
 import { useContext, useEffect, useState } from "react";
-import { Moon, ArrowLeft } from "lucide-react";
-import ItemsNav from "@/components/ItemsNav/ItemsNav";
-import TopNav from "@/components/TopNav/TopNav";
-import { GoBack } from "@/lib/Functions";
+import { Moon } from "lucide-react";
 import { ThemeContext } from "@/contexts/ThemeContext";
+import Back from "../Buttons/Back";
 
 export default function ThemeOptions() {
   const themeContext = useContext(ThemeContext);
@@ -28,17 +25,9 @@ export default function ThemeOptions() {
   };
 
   return (
-    <main>
-      <TopNav />
-      <ItemsNav />
-
-      <div className="settings-container">
-        <button
-          onClick={GoBack}
-          className="flex items-center gap-2 text-blue-500 mb-4 back-button"
-        >
-          <ArrowLeft size={20} /> Back
-        </button>
+    <>
+      <div className="first-container">
+        <Back title="Theme" />
 
         <h4 className="p-4 container-sub-headings">
           Choose between Light, Dark, and System mode.
@@ -53,8 +42,7 @@ export default function ThemeOptions() {
             <span>Dark / Light Theme</span>
             <Moon
               size={36}
-              className={`${
-    theme === "dark" ? "mode-active" : ""} transition-all duration-200`}
+              className={`${theme === "dark" ? "mode-active" : ""} transition-all duration-200`}
             />
           </div>
 
@@ -74,6 +62,6 @@ export default function ThemeOptions() {
           </div>
         </div>
       </div>
-    </main>
+    </ >
   );
 }

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { ArrowLeft, Ellipsis, Crown, Pen, Plus, BellOff, Bell, Settings, ChevronDown, ChevronUp, EllipsisVertical, Trash2, Copy, LinkIcon, UserPlus } from "lucide-react";
 import { GoBack } from "@/lib/Functions";
 import SmallPopUpModal from "../PopUps/SmallCenterPopUp";
-import Link from "next/link";
 
 export default function GroupInfo() {
     const [members, setMembers] = useState([
@@ -30,9 +29,6 @@ export default function GroupInfo() {
                     <ArrowLeft size={20} />
                 </button>
                 <h1 className="text-lg text-[var(--main-text-color)] font-semibold">Group Info</h1>
-                <button className="text-[var(--main-text-color)]">
-                    <EllipsisVertical size={20} />
-                </button>
             </div>
 
             {/* Profile Image */}

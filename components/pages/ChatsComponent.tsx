@@ -88,7 +88,7 @@ export default function ChatsComponent() {
                             </div>
                         </div>
                         <div className="flex flex-col display-center row-g5">
-                            <span className="text-xs">{formatTimestamp(chat.last_timestamp)}</span>
+                            <ChatTime chat={chat} />
                             <span className="text-xs unread-chats-icon">4</span>
                         </div>
                     </div>
@@ -108,4 +108,14 @@ export default function ChatsComponent() {
             )}
         </>
     );
+}
+
+function ChatTime({ chat }: { chat: { last_timestamp: string } }) {
+    const [formattedTime, setFormattedTime] = useState("...");
+
+    useEffect(() => {
+        setFormattedTime(formatTimestamp(chat.last_timestamp));
+    }, [chat.last_timestamp]);
+
+    return <span className="text-xs">{formattedTime}</span>;
 }

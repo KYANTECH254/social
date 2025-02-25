@@ -4,15 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowLeft,
   EllipsisVertical,
-  Mic,
-  Smile,
-  Camera,
-  Paperclip,
-  Send,
   ChevronsDown,
   ChevronsUp,
-  ChevronDown,
-  ChevronUp
 } from 'lucide-react';
 import ReplyPreview from '../Buttons/IsReplyMessage';
 import MediaGallery from './MediaGallery';

@@ -6,6 +6,7 @@ import { Search, Bell, X } from "lucide-react";
 export default function TopNav() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchIcon, setSearchIcon] = useState(true);
+  const [placeholder, setPlaceholder] = useState("Search...");
   const pathname = usePathname();
   const router = useRouter();
 
@@ -13,9 +14,18 @@ export default function TopNav() {
     if (!["/", "/chats", "/groups", "/posts"].includes(pathname)) {
       setIsSearching(false);
     }
-    if (["/search"].includes(pathname)) {
-      setSearchIcon(false);
-    }
+
+    setSearchIcon(pathname !== "/search");
+
+    const placeholderMap: Record<string, string> = {
+      "/": "Search contacts...",
+      "/chats": "Search chats...",
+      "/groups": "Search groups...",
+      "/posts": "Search posts...",
+      "/search": "Search something..."
+    };
+
+    setPlaceholder(placeholderMap[pathname] || "Search...");
   }, [pathname]);
 
   const handleSearchClick = () => {
@@ -47,11 +57,11 @@ export default function TopNav() {
           </div>
         </>
       ) : (
-        <div className="flex items-center w-full bg-white">
+        <div className="flex items-center w-full bg-[var(--main-background-color)]">
           <input
             type="text"
-            placeholder="Search contacts..."
-            className="flex-grow outline-none text-black px-2"
+            placeholder={placeholder}
+            className="w-full h-full flex-grow outline-none bg-[var(--main-background-color)] text-[var(--main-text-color)] px-2"
           />
           <button className="p-2" onClick={() => setIsSearching(false)}>
             <X size={20} />
