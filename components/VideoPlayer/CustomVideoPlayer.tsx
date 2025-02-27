@@ -174,42 +174,42 @@ const CustomVideoPlayer = ({ src, className }: CustomVideoPlayerProps) => {
         setCurrentTime(newTime);
     };
 
-    const handleSeekStartTouch = (e: React.TouchEvent) => {
-        e.stopPropagation();
-        const video = videoRef.current;
-        if (!video || !progressBarRef.current) return;
+    // const handleSeekStartTouch = (e: React.TouchEvent) => {
+    //     e.stopPropagation();
+    //     const video = videoRef.current;
+    //     if (!video || !progressBarRef.current) return;
 
-        setIsSeeking(true);
-        setShowControls(true);
-        if (controlsTimeout.current) clearTimeout(controlsTimeout.current);
+    //     setIsSeeking(true);
+    //     setShowControls(true);
+    //     if (controlsTimeout.current) clearTimeout(controlsTimeout.current);
 
-        const getNewTime = (touch: Touch) => {
-            const rect = progressBarRef.current!.getBoundingClientRect();
-            const x = touch.clientX - rect.left;
-            const percentage = Math.min(Math.max(x / rect.width, 0), 1);
-            return percentage * duration;
-        };
+    //     const getNewTime = (touch: Touch) => {
+    //         const rect = progressBarRef.current!.getBoundingClientRect();
+    //         const x = touch.clientX - rect.left;
+    //         const percentage = Math.min(Math.max(x / rect.width, 0), 1);
+    //         return percentage * duration;
+    //     };
 
-        const handleTouchMove = (e: TouchEvent) => {
-            if (!e.touches[0]) return;
-            const newTime = getNewTime(e.touches[0]);
-            video.currentTime = newTime;
-            setCurrentTime(newTime);
-        };
+    //     const handleTouchMove = (e: TouchEvent) => {
+    //         if (!e.touches[0]) return;
+    //         const newTime = getNewTime(e.touches[0]);
+    //         video.currentTime = newTime;
+    //         setCurrentTime(newTime);
+    //     };
 
-        const handleTouchEnd = () => {
-            document.removeEventListener('touchmove', handleTouchMove);
-            document.removeEventListener('touchend', handleTouchEnd);
-            setIsSeeking(false);
-        };
+    //     const handleTouchEnd = () => {
+    //         document.removeEventListener('touchmove', handleTouchMove);
+    //         document.removeEventListener('touchend', handleTouchEnd);
+    //         setIsSeeking(false);
+    //     };
 
-        document.addEventListener('touchmove', handleTouchMove);
-        document.addEventListener('touchend', handleTouchEnd);
+    //     document.addEventListener('touchmove', handleTouchMove);
+    //     document.addEventListener('touchend', handleTouchEnd);
 
-        const newTime = getNewTime(e.touches[0]);
-        video.currentTime = newTime;
-        setCurrentTime(newTime);
-    };
+    //     const newTime = getNewTime(e.touches[0]);
+    //     video.currentTime = newTime;
+    //     setCurrentTime(newTime);
+    // };
 
     const showControlsOnMove = () => {
         if (isSeeking) return;
@@ -279,7 +279,7 @@ const CustomVideoPlayer = ({ src, className }: CustomVideoPlayerProps) => {
                                     className="flex-1 h-1 bg-gray-600 rounded-full cursor-pointer relative ml-2 
                                                before:absolute before:top-[-8px] before:bottom-[-8px] before:left-0 before:right-0 before:content-['']"
                                     onMouseDown={handleSeekStart}
-                                    onTouchStart={handleSeekStartTouch}
+                                    // onTouchStart={handleSeekStartTouch}
                                 >
                                     <div
                                         className="h-full rounded-full absolute top-0 left-0 transition-all duration-150 linear"
