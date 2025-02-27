@@ -13,7 +13,7 @@ export default function BottomPopupModal({ isOpen, onClose, children }: any) {
             document.body.style.overflow = "hidden";
             if (modalRef.current) {
                 const modalHeight = modalRef.current.offsetHeight;
-                setMaxDrag(window.innerHeight - modalHeight); // Ensure top remains visible
+                setMaxDrag(window.innerHeight - modalHeight);
             }
         } else {
             document.body.style.overflow = "auto";

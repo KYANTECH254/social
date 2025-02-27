@@ -9,7 +9,7 @@ export default function SettingsContainer() {
         { name: "Theme", icon: <PaintBucket size={20} />, link: "/settings/theme" },
         { name: "Privacy", icon: <Shield size={20} />, link: "/settings/privacy" },
         { name: "Security", icon: <ShieldCheck size={20} />, link: "/settings/security" },
-        { name: "Account Management", icon: <Settings size={20} />, link: "/settings/account" },
+        { name: "Account Management", icon: <Settings size={20} />, link: "/settings/account-management" },
         { name: "Help", icon: <HelpCircle size={20} />, link: "/help" },
         { name: "Invite a Friend", icon: <Users size={20} />, link: "/settings/invite" },
         { name: "Download App", icon: <Download size={20} />, link: "/download/app" },

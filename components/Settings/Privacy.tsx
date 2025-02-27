@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Back from "../Buttons/Back";
 import Toggle from "../Buttons/Toggle";
 import Link from "next/link";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export default function Privacy() {
     const [hideLastSeen, setHideLastSeen] = useState(false);
@@ -40,11 +41,13 @@ export default function Privacy() {
                     <Link href="/settings/privacy/profile-picture">
                         <div className="flex flex-row justify-between items-center p-4 settings-cards">
                             <h2 className="text-lg">Choose who to see your Profile picture </h2>
+                            <ArrowRight size={24} />
                         </div>
                     </Link>
                     <Link href="/settings/privacy/status-contacts">
                         <div className="flex flex-row justify-between items-center p-4 settings-cards">
                             <h2 className="text-lg">Choose who to view your Status</h2>
+                            <ArrowRight size={24} />
                         </div>
                     </Link>
                     <div className="flex flex-row justify-between items-center p-4 settings-cards">
@@ -54,6 +57,7 @@ export default function Privacy() {
                     <Link href="/settings/privacy/chat-lock">
                         <div className="flex flex-row justify-between items-center p-4 settings-cards">
                             <h2 className="text-lg">Chat lock</h2>
+                            <ArrowRight size={24} />
                         </div>
                     </Link>
                 </div>

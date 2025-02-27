@@ -57,22 +57,22 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
 
     const goNext = () => {
         const currentPost = statuses[currentIndex];
-    
+
         if (currentIndex < currentPost.recentStatus.length - 1) {
             setCurrentIndex((prev) => prev + 1);
         } else if (statuses[currentIndex + 1]) {
-            const nextId = statuses[currentIndex + 1].link; 
-            
+            const nextId = statuses[currentIndex + 1].link;
+
             router.push(`/status/${nextId}`);
             setCurrentIndex(0); // Reset sub-status index
         }
     };
-    
+
     const goBack = () => {
         if (currentIndex > 0) {
             setCurrentIndex((prev) => prev - 1);
         } else if (statuses[currentIndex - 1]) {
-            const prevId = statuses[currentIndex - 1].link; 
+            const prevId = statuses[currentIndex - 1].link;
             router.push(`/status/${prevId}`);
             setCurrentIndex(0); // Reset sub-status index
         }
@@ -81,37 +81,35 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
     const nextStatus = () => {
         if (currentStatusIndex < statuses.length - 1) {
             const nextUser = statuses[currentStatusIndex + 1];
-    
+
             if (!nextUser) return; // Ensure next user exists
-    
+
             setCurrentStatusIndex((prev) => prev + 1);
             setCurrentIndex(0); // Reset to first sub-status for the next user
             setSwipeDirection('right');
-    
+
             setTimeout(() => {
                 router.push(`/status/${nextUser.link}`); // Ensure we're using `id`
                 console.log(`/status/${nextUser.link}`);
             }, 300);
         }
     };
-    
+
     const previousStatus = () => {
         if (currentStatusIndex > 0) {
             const prevUser = statuses[currentStatusIndex - 1];
-    
+
             if (!prevUser) return; // Ensure previous user exists
-    
+
             setCurrentStatusIndex((prev) => prev - 1);
             setCurrentIndex(0); // Reset to first sub-status for the previous user
             setSwipeDirection('left');
-    
+
             setTimeout(() => {
                 router.push(`/status/${prevUser.link}`);
             }, 300);
         }
     };
-    
-    
 
     // Swipe Handlers
     const handlers = useSwipeable({
@@ -124,7 +122,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                 setSwipeDirection('left');
             }
         },
-        onSwiped: () => setSwipeDirection(null), // Reset after swipe ends
+        onSwiped: () => setSwipeDirection(null), 
         trackMouse: true,
     });
 
@@ -132,25 +130,25 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
 
     const currentPost = statuses[currentStatusIndex] ?? null;
     if (!currentPost || !currentPost.recentStatus) return <div>Loading status...</div>;
-    
+
     const currentStatus = currentPost.recentStatus[currentIndex] ?? null;
     if (!currentStatus) return <div>Loading status...</div>;
-    
+
     return (
         // <div className="relative h-screen w-full items-center justify-center overflow-hidden bg-black">
         <motion.div
-        {...handlers}
-        className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black"
-        initial={{ x: 0, opacity: 1 }}
-        animate={{ 
-            x: swipeDirection === 'right' ? '-100%' : swipeDirection === 'left' ? '100%' : 0,
-            rotateY: swipeDirection === 'right' ? -15 : swipeDirection === 'left' ? 15 : 0,
-            opacity: swipeDirection ? 0 : 1 
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-    >
+            {...handlers}
+            className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black"
+            initial={{ x: 0, opacity: 1 }}
+            animate={{
+                x: swipeDirection === 'right' ? '-100%' : swipeDirection === 'left' ? '100%' : 0,
+                rotateY: swipeDirection === 'right' ? -15 : swipeDirection === 'left' ? 15 : 0,
+                opacity: swipeDirection ? 0 : 1
+            }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
             {/* Progress Bar */}
-            <div className="absolute top-4 left-0 right-0 z-50 flex justify-center gap-1 px-4">
+            <div className="absolute top-4 left-0 right-0 z-50 flex justify-center gap-1 px-4 animate-">
                 {statuses.map((_, index) => (
                     <div
                         key={index}
@@ -213,7 +211,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                     <MessageCircle className={`w-8 h-8 mb-1 transition-transform duration-300 ease-out ${commented ? 'animate-pop' : ''
                         } ${commented ? 'text-[var(--main-color)]' : 'text-white'
                         }`}
-                         />
+                    />
                     <span className="text-sm text-white">{formatCount(comments[currentStatus.id] || 0)}</span>
                 </button>
 
@@ -224,7 +222,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                     <Bookmark className={`w-8 h-8 mb-1 transition-transform duration-300 ease-out ${shared ? 'animate-pop' : ''
                         } ${shared ? 'text-[var(--main-color)]' : 'text-white'
                         }`}
-                         />
+                    />
                     <span className="text-sm text-white">{formatCount(saves[currentStatus.id] || 0)}</span>
                 </button>
             </div>
@@ -258,7 +256,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                     <CommentSection />
                 </BottomPopupModal>
             </>
-        {/* </div> */}
+            {/* </div> */}
         </motion.div>
     );
 };

@@ -7,7 +7,6 @@ export default function Page() {
         <>
             <TopNav />
             <ItemsNav />
-
             <SettingsContainer />
 
         </>

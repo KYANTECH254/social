@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Search, Bell, X } from "lucide-react";
+import Link from "next/link";
 
 export default function TopNav() {
   const [isSearching, setIsSearching] = useState(false);
@@ -41,7 +42,9 @@ export default function TopNav() {
       {!isSearching ? (
         <>
           {/* Left Section: Logo */}
-          <div className="text-xl font-bold mob-app-logo">MyLogo</div>
+          <Link href="/">
+            <div className="text-xl font-bold mob-app-logo">MyLogo</div>
+          </Link>
 
           {/* Right Section: Icons */}
           <div className="flex items-center space-x-4">
