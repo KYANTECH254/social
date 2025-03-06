@@ -6,7 +6,7 @@ import { Heart, MessageCircle, Bookmark, ChevronLeft, ChevronRight } from 'lucid
 import CustomVideoPlayer from '../VideoPlayer/CustomVideoPlayer';
 import { Posts, StatusPost } from '@/types/types';
 import BottomPopupModal from '../PopUps/BottomPopupModal/BottomPopupModal';
-import CommentSection from '../CommentSection';
+import CommentSection from '../CommentSection/CommentSection';
 import { useSwipeable } from 'react-swipeable';
 import { motion } from 'framer-motion';
 

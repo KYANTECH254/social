@@ -22,7 +22,8 @@
     "react-dom": "^18",
     "react-media-recorder": "^1.7.1",
     "react-modal-sheet": "^4.0.1",
-    "react-swipeable": "^7.0.2"
+    "react-swipeable": "^7.0.2",
+    "sonner": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",

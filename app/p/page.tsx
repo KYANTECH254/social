@@ -1,4 +1,4 @@
-import CommentSection from "@/components/CommentSection";
+import CommentSection from "@/components/CommentSection/CommentSection";
 import ItemsNav from "@/components/ItemsNav/ItemsNav";
 import PublicTopPost from "@/components/pages/PublicTopPost";
 import TopNav from "@/components/TopNav/TopNav";

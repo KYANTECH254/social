@@ -20,6 +20,10 @@
     font-size: 8px;
 }
 
+.fs-15 {
+    font-size: 15px;
+}
+
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 12px;
@@ -65,4 +69,13 @@ input[type="range"]::-moz-range-thumb {
 
 .animate-pop {
     animation: pop 300ms ease-out;
+}
+
+/* Alert */
+.alert {
+    background-color: #2563EB !important;
+    border: #2563EB !important;
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
 }

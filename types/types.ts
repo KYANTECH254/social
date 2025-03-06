@@ -1,7 +1,7 @@
 export type StatusType = "text" | "video" | "image";
 
 export type Status = {
-    id:string;
+    id: string;
     type: StatusType;
     statusText?: string;
     path?: string | null;
@@ -13,13 +13,13 @@ export type Status = {
 };
 
 export type Posts = {
-    id:string;
+    id: string;
     name: string;
     statusCount: number;
     viewed: number;
     notViewed: number;
     recentStatus: Status[];
-    link:string;
+    link: string;
 };
 
 export type Post = {
@@ -28,12 +28,37 @@ export type Post = {
     viewed: number;
     notViewed: number;
     recentStatus: Status;
-    link:string;
+    link: string;
 };
 
 export type StatusPost = {
     id: string;
     type: StatusType;
     content?: string;
+}
+
+export type FloatingIcon = {
+    text: string;
+    icon: string | JSX.Element;
+    border: boolean;
+    link: string;
+}
+
+export type Reply = {
+    id: number;
+    username: string;
+    reply_username: string;
+    text: string;
+    avatar: string;
+    timestamp: string;
+}
+
+export type Comment = {
+    id: number;
+    username: string;
+    text: string;
+    timestamp: string;
+    avatar: string;
+    replies: Reply[];
 }
 

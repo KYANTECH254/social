@@ -1,4 +1,4 @@
-import { Posts } from "./types";
+import { Posts, Comment } from "./types";
 
 export const samplePosts: Posts[] = [
     {
@@ -10,7 +10,7 @@ export const samplePosts: Posts[] = [
         link: "1", // Parent link
         recentStatus: [
             {
-                id:"1",
+                id: "1",
                 type: "text",
                 statusText: "klshdajsvdgjasdgahsdgahsdfahsdfahsdgahfs!",
                 bgColor: "red",
@@ -22,7 +22,7 @@ export const samplePosts: Posts[] = [
                 shares: 2,
             },
             {
-                id:"2",
+                id: "2",
                 type: "text",
                 statusText: "Had an amazing time at the park!",
                 bgColor: "blue",
@@ -34,7 +34,7 @@ export const samplePosts: Posts[] = [
                 shares: 6,
             },
             {
-                id:"3",
+                id: "3",
                 type: "text",
                 statusText: "Feeling productive today!",
                 bgColor: "green",
@@ -56,7 +56,7 @@ export const samplePosts: Posts[] = [
         link: "2", // Parent link
         recentStatus: [
             {
-                id:"4",
+                id: "4",
                 type: "video",
                 statusText: "Check out this new video!",
                 path: "/assets/images/video.mp4",
@@ -68,7 +68,7 @@ export const samplePosts: Posts[] = [
                 shares: 4,
             },
             {
-                id:"5",
+                id: "5",
                 type: "video",
                 statusText: "My favorite video of the day!",
                 path: "/assets/images/short.mp4",
@@ -90,7 +90,7 @@ export const samplePosts: Posts[] = [
         link: "3", // Parent link
         recentStatus: [
             {
-                id:"6",
+                id: "6",
                 type: "image",
                 statusText: "New photo update!",
                 path: "/assets/images/pic.jpeg",
@@ -102,7 +102,7 @@ export const samplePosts: Posts[] = [
                 shares: 15,
             },
             {
-                id:"7",
+                id: "7",
                 type: "image",
                 statusText: "Had a great weekend!",
                 path: "/assets/images/pic.jpeg",
@@ -114,7 +114,7 @@ export const samplePosts: Posts[] = [
                 shares: 12,
             },
             {
-                id:"8",
+                id: "8",
                 type: "image",
                 statusText: "My dog just got a new toy!",
                 path: "/assets/images/pic.jpeg",
@@ -136,7 +136,7 @@ export const samplePosts: Posts[] = [
         link: "4", // Parent link
         recentStatus: [
             {
-                id:"9",
+                id: "9",
                 type: "text",
                 statusText: "Just had a great lunch.",
                 bgColor: "bg-red-100",
@@ -148,7 +148,7 @@ export const samplePosts: Posts[] = [
                 shares: 3,
             },
             {
-                id:"10",
+                id: "10",
                 type: "text",
                 statusText: "I love a good cup of coffee!",
                 bgColor: "bg-yellow-100",
@@ -162,3 +162,41 @@ export const samplePosts: Posts[] = [
         ],
     },
 ];
+
+export const comments: Comment[] = [
+    {
+        id: 1,
+        username: "gloria",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        timestamp: "12h",
+        avatar: "https://i.pravatar.cc/40?img=10",
+        replies: [
+            {
+                id: 101,
+                username: "john_doe",
+                reply_username: "gloria",
+                text: "I totally agree with you! This is insightful.",
+                avatar: "https://i.pravatar.cc/40?img=10",
+                timestamp: "10h",
+            },
+        ],
+    },
+    {
+        id: 2,
+        username: "alex",
+        text: "Great discussion! I found this really helpful.",
+        timestamp: "8h",
+        avatar: "https://i.pravatar.cc/40?img=20",
+        replies: [
+            {
+                id: 102,
+                username: "maria",
+                reply_username: "alex",
+                text: "Absolutely! Thanks for sharing your thoughts.",
+                avatar: "https://i.pravatar.cc/40?img=10",
+                timestamp: "6h",
+            },
+        ],
+    },
+];
+

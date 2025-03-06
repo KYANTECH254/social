@@ -64,7 +64,7 @@ export default function TopNav() {
           <input
             type="text"
             placeholder={placeholder}
-            className="w-full h-full flex-grow outline-none bg-[var(--main-background-color)] text-[var(--main-text-color)] px-2"
+            className="w-full h-10 flex-grow outline-none bg-[var(--main-background-color)] text-[var(--main-text-color)] px-2"
           />
           <button className="p-2" onClick={() => setIsSearching(false)}>
             <X size={20} />

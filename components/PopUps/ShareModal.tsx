@@ -63,7 +63,7 @@ export default function ShareModal(isModalOpen: any) {
                 <button
                     onClick={() => handleShare('twitter')}
                     className="flex items-center rounded-md transition share-icon-btn">
-                    <img src="assets/images/X.png" alt="Twitter" className="space-x-2 p-2 share-btn" />
+                    <img src="assets/images/X-cl.png" alt="Twitter" className="space-x-2 p-2 share-btn" />
                     <span>Twitter</span>
                 </button>
 

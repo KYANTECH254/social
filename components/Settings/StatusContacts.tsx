@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Back from "../Buttons/Back";
-import RoundRadio from "../Buttons/RoundRadio";
+import RoundCheckbox from "../Buttons/RoundCheckbox";
 
 const contacts = [
     { id: 1, name: "John Doe" },
@@ -57,7 +57,6 @@ export default function StatusContacts() {
                     ))}
                 </div>
 
-                {/* Contacts Listing (Visible only for "My Contacts Except") */}
                 {selectedOption === "My Contacts Except" && (
                     <div className="mt-6">
                         <h3 className="text-lg font-medium mb-2">Select contacts to exclude</h3>
@@ -65,7 +64,7 @@ export default function StatusContacts() {
                             {contacts.map((contact) => (
                                 <label
                                     key={contact.id}
-                                    className="flex items-center justify-between p-2 last:border-none cursor-pointer"
+                                    className="flex items-center justify-between mt-2 mb-2 last:border-none cursor-pointer"
                                 >
                                     <div className="flex flex-row items-center">
                                         <img
@@ -75,7 +74,7 @@ export default function StatusContacts() {
                                         />
                                         <span>{contact.name}</span>
                                     </div>
-                                    <RoundRadio
+                                    <RoundCheckbox
                                         name="excluded-contacts"
                                         value={contact.id.toString()}
                                         checked={excludedContacts.includes(contact.id)}
