@@ -1,9 +1,11 @@
-import GroupsComponent from "@/components/pages/GroupsComponent";
+"use client"
 import ItemsNav from "../../components/ItemsNav/ItemsNav";
 import TopNav from "../../components/TopNav/TopNav";
 import SwipeNavigator from "@/components/SwipeNavigator";
 import FloatingIcons from "@/components/FloatingIcons";
+import dynamic from 'next/dynamic';
 
+const GroupsComponent = dynamic(() => import('@/components/pages/GroupsComponent'), { ssr: false });
 
 export default function Chats() {
     return (
@@ -11,7 +13,7 @@ export default function Chats() {
             <TopNav />
             <ItemsNav />
             <GroupsComponent />
-             <FloatingIcons />
+            <FloatingIcons />
             <SwipeNavigator nextPage="/groups" prevPage="/posts" />
         </div>
     )
