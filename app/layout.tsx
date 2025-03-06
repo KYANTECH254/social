@@ -6,7 +6,6 @@ import "../public/styles/main.css"
 import "../public/styles/static.css"
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Toaster } from 'sonner';
-import { Check } from "lucide-react";
 
 const notoSans = Nunito({
   subsets: ['latin'],
@@ -30,7 +29,7 @@ export default function RootLayout({
         <Toaster
           richColors
           position="top-center"
-          />
+        />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

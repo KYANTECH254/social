@@ -1,9 +1,7 @@
-import ChatComponent from "@/components/pages/Chat";
+import dynamic from 'next/dynamic';
 
-export default function page() {
-    return (
-        <>
-            <ChatComponent />
-        </>
-    )
+const ChatComponent = dynamic(() => import('@/components/pages/Chat'), { ssr: false });
+
+export default function ChatPage() {
+    return <ChatComponent />;
 }
