@@ -30,7 +30,8 @@ export default function CommentContent({ text, maxLines = 5 }: CommentContentPro
                     WebkitBoxOrient: "vertical",
                     overflow: "hidden",
                     WebkitLineClamp: expanded ? "unset" : maxLines,
-                    marginTop: '5px'
+                    marginTop: '5px',
+                    maxHeight: '200px'
                 }}
             >
                 {text}

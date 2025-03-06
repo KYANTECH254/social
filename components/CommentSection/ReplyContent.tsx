@@ -31,7 +31,8 @@ export default function ReplyContent({ username, text, maxLines = 3 }: ReplyCont
                     WebkitBoxOrient: "vertical",
                     overflow: "hidden",
                     WebkitLineClamp: expanded ? "unset" : maxLines,
-                    marginTop:'5px'
+                    marginTop:'5px',
+                    maxHeight: '200px'
                 }}
             >
                 <span className="reply-content-user">@{username}</span> {text}

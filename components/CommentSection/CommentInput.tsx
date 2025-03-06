@@ -18,7 +18,7 @@ export default function CommentInput() {
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setComment(e.target.value);
-        // requestAnimationFrame(adjustHeight); 
+        requestAnimationFrame(adjustHeight); 
     };
 
     const handleComment = () => {
@@ -35,9 +35,9 @@ export default function CommentInput() {
         requestAnimationFrame(adjustHeight); 
     };
 
-    // useEffect(() => {
-    //     adjustHeight();
-    // }, [comment]);
+    useEffect(() => {
+        adjustHeight();
+    }, [comment]);
 
     return (
         <>
