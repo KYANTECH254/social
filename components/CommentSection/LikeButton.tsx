@@ -2,9 +2,9 @@
 import { ThumbsUp } from "lucide-react";
 import { useState } from "react";
 
-export default function LikeButton() {
+export default function LikeButton({ total }: { total: number }) {
     const [liked, setLiked] = useState(false);
-    const [likes, setLikes] = useState(0); 
+    const [likes, setLikes] = useState<number>(total || 0);
 
     const toggleLike = () => {
         setLiked(!liked);
@@ -14,16 +14,15 @@ export default function LikeButton() {
     return (
         <button
             onClick={toggleLike}
-            className="space-x-1 p-2 rounded-md transition-transform duration-200 hover:scale-105 display-center"
+            className="space-x-2 p-2 rounded-md transition flex items-center flex-row gap-1"
         >
             <ThumbsUp
-                size={20}
-                className={`transition-colors duration-300 ${
-                    liked ? "default-color" : "default-text-color"
-                }`}
+                size={24}
+                className={`transition-colors duration-300 ${liked ? "default-color" : "default-text-color"
+                    }`}
                 fill={liked ? "#2563EB " : "none"}
             />
-            <span className="text-sm font-medium">{likes}</span>
+            <span className="text-sm">{likes > 0 ? likes : ""}</span>
         </button>
     );
 }

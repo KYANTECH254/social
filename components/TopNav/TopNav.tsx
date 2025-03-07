@@ -41,12 +41,9 @@ export default function TopNav() {
     <nav className="flex items-center justify-between p-4 top-nav">
       {!isSearching ? (
         <>
-          {/* Left Section: Logo */}
           <Link href="/">
             <div className="text-xl font-bold mob-app-logo">MyLogo</div>
           </Link>
-
-          {/* Right Section: Icons */}
           <div className="flex items-center space-x-4">
             {searchIcon && (
               <button className="p-2 rounded top-nav-icons" onClick={handleSearchClick}>

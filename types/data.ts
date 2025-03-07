@@ -168,16 +168,18 @@ export const comments: Comment[] = [
         id: 1,
         username: "gloria",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        timestamp: "12h",
+        timestamp: "2024-03-06T14:30:00Z", 
         avatar: "https://i.pravatar.cc/40?img=10",
+        likes: 10,
         replies: [
             {
                 id: 101,
                 username: "john_doe",
                 reply_username: "gloria",
+                likes: 5,
                 text: "I totally agree with you! This is insightful.",
                 avatar: "https://i.pravatar.cc/40?img=10",
-                timestamp: "10h",
+                timestamp: "2024-03-06T16:00:00Z", 
             },
         ],
     },
@@ -185,18 +187,22 @@ export const comments: Comment[] = [
         id: 2,
         username: "alex",
         text: "Great discussion! I found this really helpful.",
-        timestamp: "8h",
+        timestamp: "2024-03-05T10:15:00Z", 
         avatar: "https://i.pravatar.cc/40?img=20",
+        likes: 8,
         replies: [
             {
                 id: 102,
                 username: "maria",
                 reply_username: "alex",
+                likes: 3,
                 text: "Absolutely! Thanks for sharing your thoughts.",
                 avatar: "https://i.pravatar.cc/40?img=10",
-                timestamp: "6h",
+                timestamp: "2024-03-05T12:45:00Z", 
             },
         ],
     },
 ];
+
+
 

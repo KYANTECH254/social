@@ -4,24 +4,26 @@ import { Send, Smile } from "lucide-react";
 import { toast } from "sonner";
 import Emoji from "../Buttons/Emoji";
 import TextareaInput from "./TextareaInput";
+import { Toast } from "../Toast";
 
-export default function CommentInput({ onSubmit }: { onSubmit: (text: string) => void }) {
-    const [comment, setComment] = useState("");
+export default function ReplyInput({ comment, setReplyInput, replyinput, onSubmit }: { onSubmit: (text: string) => void, setReplyInput: any, replyinput: any, comment: any; }) {
+    const [reply, setReply] = useState("");
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
-    const handleComment = () => {
-        if (comment.trim()) {
-            onSubmit(comment.trim());
-            setComment("");
+    const handleReply = () => {
+        if (reply.trim()) {
+            onSubmit(reply.trim());
+            setReply("");
             setShowEmojiPicker(false);
-            toast.success('Comment added', {
+            replyinput ? setReplyInput(null) : setReplyInput(comment.id);
+            toast.success('Reply added', {
                 duration: 3000,
                 classNames: {
                     toast: 'alert',
                 }
             });
         } else {
-            toast.error('Comment cannot be empty', {
+            toast.error('Reply cannot be empty', {
                 duration: 3000,
                 classNames: {
                     toast: 'alert',
@@ -31,26 +33,26 @@ export default function CommentInput({ onSubmit }: { onSubmit: (text: string) =>
     };
 
     const handleEmojiSelect = (emoji: any) => {
-        setComment((prev) => prev + emoji.native);
+        setReply((prev) => prev + emoji.native);
     };
 
     return (
         <>
             <div
-            onClick={() => showEmojiPicker ? setShowEmojiPicker(false) : null}
-            className="comments-input">
+                onClick={() => showEmojiPicker ? setShowEmojiPicker(false) : null}
+                className="comments-input">
                 <Smile
                     onClick={() => setShowEmojiPicker((prev) => !prev)}
                     size={24}
                     className="ml-3 mr-3 w-10 h-8 text-[var(--main-text-color)] cursor-pointer flex items-center justify-center"
                 />
-                <TextareaInput setComment={setComment} comment={comment} placeholder="Add a comment..." />
+                <TextareaInput setComment={setReply} comment={reply} placeholder="Add a reply..." />
                 <button
-                    onClick={handleComment}
-                    className="flex items-center p-3 rounded-md transition font-bold"
-                    disabled={!comment.trim()}
+                    onClick={handleReply}
+                    className="flex items-center p-2 rounded-md transition"
+                    disabled={!reply.trim()}
                 >
-                    <Send size={24} className={comment.trim() ? "text-blue-500" : "text-gray-600"} />
+                    <Send size={24} className={reply.trim() ? "text-blue-500" : "text-gray-600"} />
                 </button>
             </div>
             {showEmojiPicker && <Emoji onSelect={handleEmojiSelect} />}

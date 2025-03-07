@@ -50,6 +50,7 @@ export type Reply = {
     reply_username: string;
     text: string;
     avatar: string;
+    likes?: number;
     timestamp: string;
 }
 
@@ -59,6 +60,14 @@ export type Comment = {
     text: string;
     timestamp: string;
     avatar: string;
+    likes?: number;
     replies: Reply[];
 }
 
+export type ToastType = {
+    type: string;
+    id?: number;
+    message: string;
+    duration?: number;
+    className?:string;
+}

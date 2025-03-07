@@ -1,9 +1,16 @@
-import { MessageSquare, Reply } from "lucide-react";
+import { Reply } from "lucide-react";
 
-export default function ReplyButton() {
+export default function ReplyButton({ comment, setReplyInput, replyinput }: any) {
+
+    const handleOnclick = () => {
+        !comment.id ? setReplyInput(null) : setReplyInput(comment.id);
+    }
+
     return (
-        <button className="flex items-center space-x-2 p-2 rounded-md transition">
-            <MessageSquare size={20} className="default-text-color" />
+        <button
+            onClick={handleOnclick}
+            className="flex items-center flex-row space-x-2 p-2 rounded-md transition gap-1">
+            <Reply size={24} className="default-color" />
         </button>
     );
 }
