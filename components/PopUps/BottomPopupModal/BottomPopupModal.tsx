@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { Sheet, SheetRef } from "react-modal-sheet";
 import { GripHorizontal } from "lucide-react";
 
-export default function BottomPopupModal({ isOpen, onClose, children }: any) {
+export default function BottomPopupModal({ isOpen, onClose, children, size = 0.5 }: any) {
     const ref = useRef<SheetRef>(null);
 
     return (
@@ -12,7 +12,7 @@ export default function BottomPopupModal({ isOpen, onClose, children }: any) {
             ref={ref}
             isOpen={isOpen}
             onClose={onClose}
-            snapPoints={[600, window.innerHeight * 0.5, 100, 0]}
+            snapPoints={[600, window.innerHeight * size, 100, 0]}
             initialSnap={1}
         >
             <Sheet.Backdrop onTap={onClose} />

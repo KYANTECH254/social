@@ -253,7 +253,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
 
             {/* Comment Section */}
             <>
-                <BottomPopupModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                <BottomPopupModal isOpen={isOpen} onClose={() => setIsOpen(false)} size={0.8}>
                     <CommentSection />
                 </BottomPopupModal>
             </>

@@ -1,5 +1,5 @@
 "use client";
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import {
   ArrowLeft,
@@ -10,7 +10,7 @@ import IncomingMessage from '../Buttons/IncomingMessage';
 import OutgoingMessage from '../Buttons/OutgoingMessages';
 import ReplyPreview from '../Buttons/IsReplyMessage';
 import MediaGallery from './MediaGallery';
-const VoiceChatInput = dynamic(() => import('../Buttons/VoiceRecorder'), { ssr: false });
+// const VoiceChatInput = dynamic(() => import('../Buttons/VoiceRecorder'), { ssr: false });
 
 import { GoBack } from '@/lib/Functions';
 import Emoji from '../Buttons/Emoji';
@@ -18,6 +18,7 @@ import ChatPopUpMenu from '../PopUps/ChatPopUp';
 import ChatInput from '../Inputs/ChatInput';
 import ChatSearchInput from '../Inputs/ChatSearchInput';
 import Link from 'next/link';
+import { messages } from '@/types/data';
 
 export default function ChatComponent() {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -90,84 +91,6 @@ export default function ChatComponent() {
       });
     }
   };
-
-  const messages = [
-    {
-      id: '1',
-      name: "John Doe",
-      replyID: null,
-      isReply: false,
-      text: "Hi there! How are you?",
-      time: "12:45 PM",
-      type: "incoming",
-    },
-    {
-      id: '2',
-      name: "You",
-      replyID: null,
-      isReply: false,
-      text: "Hello! I'm good, thank you. And you?",
-      time: "10:45 AM",
-      type: "outgoing",
-    },
-    {
-      id: '3',
-      name: "John Doe",
-      replyID: null,
-      isReply: false,
-      text: "I'm doing well too. Let's catch up soon!",
-      time: "12:45 PM",
-      type: "incoming",
-    },
-    {
-      id: '4',
-      name: "You",
-      replyID: null,
-      isReply: false,
-      text: "Sure, let's plan for the weekend.",
-      time: "12:45 PM",
-      type: "outgoing",
-    },
-    {
-      id: '5',
-      name: "John Doe",
-      replyID: null,
-      isReply: false,
-      text: "Hey there, I wanted to share some detailed updates regarding our project. Recently, I've been analyzing market trends, and it's fascinating to see how rapidly technology is transforming industries. We are witnessing a shift towards digital-first strategies where user experience and accessibility are paramount. The integration of artificial intelligence and machine learning into everyday processes is not only optimizing operations but also unlocking new potentials for innovation. I believe that by embracing these changes, we can create solutions that are not only efficient but also genuinely impactful in improving people's lives. Looking forward to discussing these insights further and exploring how we can leverage these trends to drive our business forward. Have a great day!",
-      time: "1:00 PM",
-      type: "incoming",
-    },
-    {
-      id: '6',
-      name: "John Doe",
-      replyID: "5",
-      isReply: true,
-      text: "Really!",
-      time: "1:02 PM",
-      type: "outgoing",
-      replyMessage: {
-        id: '5',
-        name: "John Doe",
-        text: "Hey there, I wanted to share some detailed updates regarding our project. Recently, I've been analyzing market trends, and it's fascinating to see how rapidly technology is transforming industries. We are witnessing a shift towards digital-first strategies where user experience and accessibility are paramount. The integration of artificial intelligence and machine learning into everyday processes is not only optimizing operations but also unlocking new potentials for innovation. I believe that by embracing these changes, we can create solutions that are not only efficient but also genuinely impactful in improving people's lives. Looking forward to discussing these insights further and exploring how we can leverage these trends to drive our business forward. Have a great day!",
-        time: "1:00 PM",
-      },
-    },
-    {
-      id: '7',
-      name: "John Doe",
-      replyID: "6",
-      isReply: true,
-      text: "Hey there, I wanted to share some detailed updates regarding our project. Recently, I've been analyzing market trends, and it's fascinating to see how rapidly technology is transforming industries. We are witnessing a shift towards digital-first strategies where user experience and accessibility are paramount. The integration of artificial intelligence and machine learning into everyday processes is not only optimizing operations but also unlocking new potentials for innovation. I believe that by embracing these changes, we can create solutions that are not only efficient but also genuinely impactful in improving people's lives. Looking forward to discussing these insights further and exploring how we can leverage these trends to drive our business forward. Have a great day!",
-      time: "1:05 PM",
-      type: "incoming",
-      replyMessage: {
-        id: '6',
-        name: "John Doe",
-        text: "Really!",
-        time: "1:02 PM",
-      },
-    },
-  ];
 
   const handleInputChange = (e: any) => {
     setMessage(e.target.value);
@@ -335,7 +258,7 @@ export default function ChatComponent() {
             }}
           />
         )}
-        {isRecording && <VoiceChatInput />}
+        {/* {isRecording && <VoiceChatInput />} */}
       </div>
     </>
   );
