@@ -22,7 +22,7 @@ export default function BottomPopupModal({ isOpen, onClose, children }: any) {
                     <div className="flex justify-center py-2 cursor-pointer">
                         <GripHorizontal className="text-gray-400" />
                     </div>
-                    <div className="p-4">{children}</div>
+                    <div className="overflow-y-auto">{children}</div>
                 </Sheet.Content>
             </Sheet.Container>
         </Sheet>

@@ -31,9 +31,9 @@ export default function MyStatusList({ posts }: StatusPostsProps) {
         <div className="flex flex-col gap-4">
             {statusList.length === 0 && <p className="text-center">No status found</p>}
             {statusList.map((post) =>
-                post.recentStatus.map((status) => (
+                post.recentStatus.map((status, index) => (
                     <div key={status.id} className="flex flex-row items-center justify-between">
-                        <Link href={`/my-status`} >
+                        <Link href={`/my-status?i=${index}`} >
                             <div className="flex flex-row items-center gap-4">
                                 <div className="w-[60px] h-[60px]">
                                     <MyStatusCircle
@@ -62,7 +62,7 @@ export default function MyStatusList({ posts }: StatusPostsProps) {
     );
 }
 
-function StatusTime({ time }:any) {
+function StatusTime({ time }: any) {
     const [formattedTime, setFormattedTime] = useState("...");
 
     useEffect(() => {

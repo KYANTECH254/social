@@ -8,9 +8,10 @@ import { useRouter } from "next/navigation";
 
 interface StatusPostsProps {
     posts: Posts[];
+    myposts: Posts[];
 }
 
-export default function StatusPosts({ posts }: StatusPostsProps) {
+export default function StatusPosts({ posts, myposts }: StatusPostsProps) {
     const [recent, setRecent] = useState<Posts[]>([]);
     const [viewed, setViewed] = useState<Posts[]>([]);
     const [recentOpen, setRecentOpen] = useState(true);
@@ -38,7 +39,7 @@ export default function StatusPosts({ posts }: StatusPostsProps) {
 
     return (
         <div className="space-y-4 w-full max-w-md mx-auto p-3">
-            {recent[0].recentStatus.length > 0 ? (
+            {myposts.length > 0 && myposts[0]?.recentStatus?.length > 0 ? (
                 <div onClick={() => router.push('my-posts')} className="flex flex-row items-center gap-2 relative">
                     <img src="assets/images/profile-bg.png" alt="Profile" className="w-12 h-12 rounded-full shadow-md bg-gray-500/50" />
                     <PlusCircle size={24} fill="#2563EB" className="text-[var(--main-white-color)] absolute bottom-0 left-6" />
@@ -51,6 +52,7 @@ export default function StatusPosts({ posts }: StatusPostsProps) {
                     <h3 className="text-sm font-semibold text-[var(--main-text-color)]">Add status</h3>
                 </div>
             )}
+
             {/* Recent updates section */}
             <div className="flex items-center justify-between cursor-pointer" onClick={() => setRecentOpen(prev => !prev)}>
                 <h2 className="">Recent updates</h2>

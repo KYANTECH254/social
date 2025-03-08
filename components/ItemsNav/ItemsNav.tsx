@@ -17,6 +17,7 @@ export default function ItemsNav() {
   const [activeItem, setActiveItem] = useState("");
 
   useEffect(() => {
+    if (pathname === "/my-posts") return setActiveItem("Posts");
     const active = menuItems.find((item) => item.link === pathname);
     setActiveItem(active ? active.name : "Saved");
   }, [pathname]);
