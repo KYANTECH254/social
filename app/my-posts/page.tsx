@@ -1,11 +1,9 @@
 "use client";
-
-import StatusPosts from "@/components/pages/Posts/PostStatus";
 import ItemsNav from "../../components/ItemsNav/ItemsNav";
 import TopNav from "../../components/TopNav/TopNav";
 import SwipeNavigator from "@/components/SwipeNavigator";
-import { Post } from "@/types/types";
-import { samplePosts } from "@/types/data";
+import { sampleMyPosts } from "@/types/data";
+import MyStatusPosts from "@/components/pages/Posts/MyPostStatus";
 
 export default function Page() {
   
@@ -13,8 +11,8 @@ export default function Page() {
         <div className="chats-page-container">
             <TopNav />
             <ItemsNav />
-            <StatusPosts posts={samplePosts} />
-            <SwipeNavigator nextPage="/groups" prevPage="/chats" />
+            <MyStatusPosts posts={[sampleMyPosts]} />
+            <SwipeNavigator nextPage="/my-posts" prevPage="/posts" />
         </div>
     );
 }

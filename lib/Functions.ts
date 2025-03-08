@@ -48,71 +48,72 @@ export function formatTimestamp(timestamp: string) {
 };
 
 export function formatTimestampRelative(timestamp: any) {
-  if (typeof window !== "undefined") {
-    const inputDate = new Date(timestamp);
-    const currentDate = new Date();
-
-    // Convert input date to UTC for comparison
-    const inputDateUTC = Date.UTC(
-      inputDate.getUTCFullYear(),
-      inputDate.getUTCMonth(),
-      inputDate.getUTCDate(),
-      inputDate.getUTCHours(),
-      inputDate.getUTCMinutes(),
-      inputDate.getUTCSeconds()
-    );
-
-    const currentDateUTC = Date.UTC(
-      currentDate.getUTCFullYear(),
-      currentDate.getUTCMonth(),
-      currentDate.getUTCDate(),
-      currentDate.getUTCHours(),
-      currentDate.getUTCMinutes(),
-      currentDate.getUTCSeconds()
-    );
-
-    const diffMs = currentDateUTC - inputDateUTC;
-
-    // Handle future timestamps
-    if (diffMs < 0) {
-      return 'Just now';
-    }
-
-    // Calculate time differences
-    const minutesAgo = Math.floor(diffMs / 60000);
-    const hoursAgo = Math.floor(diffMs / 3600000);
-    const daysAgo = Math.floor(diffMs / 86400000);
-
-    // Less than 1 hour
-    if (diffMs < 3600000) {
-      const minutes = Math.max(1, minutesAgo);
-      return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-    }
-
-    // Less than 24 hours
-    if (diffMs < 86400000) {
-      return `${hoursAgo} hour${hoursAgo > 1 ? 's' : ''} ago`;
-    }
-
-    // Check if yesterday (UTC)
-    const yesterday = new Date(currentDateUTC);
-    yesterday.setUTCDate(yesterday.getUTCDate() - 1);
-
-    const isYesterday =
-      inputDate.getUTCFullYear() === yesterday.getUTCFullYear() &&
-      inputDate.getUTCMonth() === yesterday.getUTCMonth() &&
-      inputDate.getUTCDate() === yesterday.getUTCDate();
-
-    if (isYesterday) {
-      return 'Yesterday';
-    }
-
-    // Format date as MM/DD/YY (UTC)
-    const month = inputDate.getUTCMonth() + 1;
-    const day = inputDate.getUTCDate();
-    const year = inputDate.getUTCFullYear().toString().slice(-2);
-    return `${month}/${day}/${year}`;
+  if (typeof window === "undefined") {
+    return "...";
   }
+  const inputDate = new Date(timestamp);
+  const currentDate = new Date();
+
+  // Convert input date to UTC for comparison
+  const inputDateUTC = Date.UTC(
+    inputDate.getUTCFullYear(),
+    inputDate.getUTCMonth(),
+    inputDate.getUTCDate(),
+    inputDate.getUTCHours(),
+    inputDate.getUTCMinutes(),
+    inputDate.getUTCSeconds()
+  );
+
+  const currentDateUTC = Date.UTC(
+    currentDate.getUTCFullYear(),
+    currentDate.getUTCMonth(),
+    currentDate.getUTCDate(),
+    currentDate.getUTCHours(),
+    currentDate.getUTCMinutes(),
+    currentDate.getUTCSeconds()
+  );
+
+  const diffMs = currentDateUTC - inputDateUTC;
+
+  // Handle future timestamps
+  if (diffMs < 0) {
+    return 'Just now';
+  }
+
+  // Calculate time differences
+  const minutesAgo = Math.floor(diffMs / 60000);
+  const hoursAgo = Math.floor(diffMs / 3600000);
+  const daysAgo = Math.floor(diffMs / 86400000);
+
+  // Less than 1 hour
+  if (diffMs < 3600000) {
+    const minutes = Math.max(1, minutesAgo);
+    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+  }
+
+  // Less than 24 hours
+  if (diffMs < 86400000) {
+    return `${hoursAgo} hour${hoursAgo > 1 ? 's' : ''} ago`;
+  }
+
+  // Check if yesterday (UTC)
+  const yesterday = new Date(currentDateUTC);
+  yesterday.setUTCDate(yesterday.getUTCDate() - 1);
+
+  const isYesterday =
+    inputDate.getUTCFullYear() === yesterday.getUTCFullYear() &&
+    inputDate.getUTCMonth() === yesterday.getUTCMonth() &&
+    inputDate.getUTCDate() === yesterday.getUTCDate();
+
+  if (isYesterday) {
+    return 'Yesterday';
+  }
+
+  // Format date as MM/DD/YY (UTC)
+  const month = inputDate.getUTCMonth() + 1;
+  const day = inputDate.getUTCDate();
+  const year = inputDate.getUTCFullYear().toString().slice(-2);
+  return `${month}/${day}/${year}`;
 }
 
 export function saveToLocalStorage(name: string, value: string): void {
@@ -202,13 +203,13 @@ export function userUTCTime() {
   const utcTime = new Date().toISOString();
   return utcTime;
 }
- 
+
 /**
  * Given a UTC time string, returns a string representing the time in the user's local time zone.
  * @param utcTime a time string in the ISO format, e.g. "2024-03-06T14:30:00Z"
  */
 export function userLocalTime(utcTime: string) {
-  const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; 
+  const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   const localTime = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -217,7 +218,7 @@ export function userLocalTime(utcTime: string) {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
-    timeZone: userTimeZone 
+    timeZone: userTimeZone
   }).format(new Date(utcTime));
 
   return localTime;
@@ -243,6 +244,6 @@ export function timeAgo(utcTime: string) {
   const weeks = Math.floor(days / 7);
   if (weeks < 52) return `${weeks}w`;
   const years = Math.floor(weeks / 52);
-  
+
   return `${years}y`;
 }

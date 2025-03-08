@@ -243,6 +243,7 @@ body {
     background-color: transparent;
     color: var(--main-white);
     max-width: 100%;
+    height:auto;
     display: flex;
     align-items: center;
     justify-content: center;

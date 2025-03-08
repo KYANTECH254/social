@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Heart, MessageCircle, Bookmark, ChevronLeft, ChevronRight } from 'lucide-react';
-import CustomVideoPlayer from '../VideoPlayer/CustomVideoPlayer';
+import CustomVideoPlayer from '../../VideoPlayer/CustomVideoPlayer';
 import { Posts, StatusPost } from '@/types/types';
-import BottomPopupModal from '../PopUps/BottomPopupModal/BottomPopupModal';
-import CommentSection from '../CommentSection/CommentSection';
+import BottomPopupModal from '../../PopUps/BottomPopupModal/BottomPopupModal';
+import CommentSection from '../../CommentSection/CommentSection';
 import { useSwipeable } from 'react-swipeable';
 import { motion } from 'framer-motion';
 
@@ -122,7 +122,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                 setSwipeDirection('left');
             }
         },
-        onSwiped: () => setSwipeDirection(null), 
+        onSwiped: () => setSwipeDirection(null),
         trackMouse: true,
     });
 
@@ -138,7 +138,8 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
         // <div className="relative h-screen w-full items-center justify-center overflow-hidden bg-black">
         <motion.div
             {...handlers}
-            className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black"
+            className={`relative h-screen w-full flex items-center justify-center overflow-hidden
+                ${currentStatus.type === 'text' ? `bg-${currentStatus.bgColor}-500` : 'bg-transparent'}`}
             initial={{ x: 0, opacity: 1 }}
             animate={{
                 x: swipeDirection === 'right' ? '-100%' : swipeDirection === 'left' ? '100%' : 0,
@@ -179,7 +180,7 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
                 )}
 
                 {currentStatus.type === 'text' && (
-                    <div className="text-white text-4xl text-center p-8 word-break break-all">
+                    <div className={`bg-${currentStatus.bgColor}-500 text-white  text-4xl text-center p-8 word-break break-all`}>
                         {currentStatus.statusText}
                     </div>
                 )}

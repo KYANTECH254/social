@@ -2,10 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { UserPlus } from "lucide-react";
+import { Camera, Pen, UserPlus } from "lucide-react";
 import { FloatingIcon } from "@/types/types";
 
-export default function FloatingIcons() {
+export default function FloatingIcons({ addstatus }: any) {
     const pathname = usePathname();
 
     const defaultIcons: FloatingIcon[] = [
@@ -23,21 +23,29 @@ export default function FloatingIcons() {
         },
     ];
 
-    const floatingIcons = pathname === "/groups" ? groupIcon : defaultIcons;
+    const statusIcons: FloatingIcon[] = [
+        { text: "Text", icon: <Pen size={24} className="text-[var(--main-color)] font-bold" />, border: true, link: "/text-status" },
+        { text: "Video / Image", icon: <Camera size={24} className="text-green-500 font-bold" />, border: true, link: "/file-status" },
+    ];
+
+    const floatingIcons =
+        pathname === "/groups" ? groupIcon : pathname === "/posts" || pathname === "/my-posts" ? statusIcons : defaultIcons;
 
     return (
         <div className="floating-icons w-full floating-icons-container flex items-center">
             {floatingIcons.map((item) => (
-                <Link href={item.link} key={item.link}>
-                    <div className="flex flex-col items-center w-full gap-2 p-3 transition floating-icons-item">
-                        <div className={`floating-icon ${item.border ? "floating-icon-border" : ""}`}>
-                            {item.icon}
+                (pathname === "/posts" || pathname === "/my-posts" && !addstatus) ? null : (
+                    <Link href={item.link} key={item.link}>
+                        <div className="flex flex-col items-center w-full gap-2 p-3 transition floating-icons-item">
+                            <div className={`floating-icon ${item.border ? "floating-icon-border" : ""}`}>
+                                {item.icon}
+                            </div>
+                            <div className="text-sm mt-1 truncate text-center floating-icon-text">
+                                {item.text}
+                            </div>
                         </div>
-                        <span className="text-sm mt-1 truncate text-center floating-icon-text">
-                            {item.text}
-                        </span>
-                    </div>
-                </Link>
+                    </Link>
+                )
             ))}
         </div>
     );

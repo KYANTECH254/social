@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from 'next/navigation';
-import StatusViewer from '@/components/pages/StatusViewer';
+import StatusViewer from '@/components/pages/Posts/StatusViewer';
 import { samplePosts } from '@/types/data';
 
 function fetchStatuses(id: string) {

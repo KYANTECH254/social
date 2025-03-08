@@ -208,5 +208,48 @@ export const comments: Comment[] = [
     },
 ];
 
+export const sampleMyPosts: Posts = {
+    id: "1",
+    name: "Alice",
+    statusCount: 3,
+    viewed: 3,
+    notViewed: 0,
+    link: "1",
+    recentStatus: [
+        {
+            id: "1",
+            type: "text",
+            statusText: "Hell yeah!",
+            bgColor: "red",
+            path: null,
+            timestamp: "2025-02-17T16:58:00Z",
+            views: 120,
+            comments: 5,
+            shares: 2,
+        },
+        {
+            id: "2",
+            type: "text",
+            statusText: "Had an amazing time at the park!",
+            bgColor: "blue",
+            path: null,
+            timestamp: "2025-02-17T16:18:00Z",
+            views: 200,
+            comments: 12,
+            shares: 6,
+        },
+        {
+            id: "3",
+            type: "text",
+            statusText: "Feeling productive today!",
+            bgColor: "green",
+            path: null,
+            timestamp: "2025-02-17T15:58:00Z",
+            views: 85,
+            comments: 3,
+            shares: 1,
+        },
+    ],
+};
 
 

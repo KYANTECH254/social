@@ -27,7 +27,7 @@ export type Post = {
     statusCount: number;
     viewed: number;
     notViewed: number;
-    recentStatus: Status;
+    recentStatus: Status[];
     link: string;
 };
 
