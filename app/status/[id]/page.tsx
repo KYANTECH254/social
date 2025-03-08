@@ -2,6 +2,7 @@
 import { useParams } from 'next/navigation';
 import StatusViewer from '@/components/pages/Posts/StatusViewer';
 import { samplePosts } from '@/types/data';
+import { Suspense } from 'react';
 
 function fetchStatuses(id: string) {
     const currentUserIndex = samplePosts.findIndex(post => post.link === id);
@@ -19,10 +20,10 @@ function fetchStatuses(id: string) {
     };
 }
 
-export default function StatusPage() {
+export function StatusPage() {
     const { id } = useParams();
     const { statuses, currentIndex } = fetchStatuses(id as string);
-    console.log("Statuses:",statuses, "Initial Index",currentIndex)
+    console.log("Statuses:", statuses, "Initial Index", currentIndex)
 
     return (
         <div className="h-screen">
@@ -37,4 +38,12 @@ export default function StatusPage() {
     );
 }
 
+export default function page() {
+    return (
+        <Suspense>
+            <StatusPage />
+        </Suspense>
+    )
+
+}
 
