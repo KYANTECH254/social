@@ -1,5 +1,5 @@
 "use client";
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
 import {
   ArrowLeft,
@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import ReplyPreview from '../Buttons/IsReplyMessage';
 import MediaGallery from './MediaGallery';
-const VoiceChatInput = dynamic(() => import('../Buttons/VoiceRecorder'), { ssr: false });
+// const VoiceChatInput = dynamic(() => import('../Buttons/VoiceRecorder'), { ssr: false });
 
 import { GoBack } from '@/lib/Functions';
 import Emoji from '../Buttons/Emoji';
@@ -347,7 +347,7 @@ export default function GroupChatComponent() {
           />
         )}
 
-        {isRecording && <VoiceChatInput />}
+        {/* {isRecording && <VoiceChatInput />} */}
       </div >
     </>
   );
