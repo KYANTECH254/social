@@ -79,3 +79,18 @@ input[type="range"]::-moz-range-thumb {
     font-size: 15px !important;
     font-weight: 500 !important;
 }
+
+/* avatar */
+.avatar-canvas {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: 5px solid red;
+}

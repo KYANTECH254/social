@@ -693,6 +693,11 @@ input:checked+.slider:before {
     flex-direction: column;
 }
 
+.reply-box {
+    display: flex;
+    flex-direction: column;
+}
+
 .comment-box-header {
     display: flex;
     padding: 5px;

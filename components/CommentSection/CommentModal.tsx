@@ -4,13 +4,15 @@ import { MoreVertical, Edit, Trash, Flag } from "lucide-react";
 import { useState } from "react";
 
 interface VerticalMenuProps {
+    username: string;
+    session: any;
     id: number;
     onEdit: (id: number) => void;
     onDelete: (id: number) => void;
     onReport: (id: number) => void;
 }
 
-export default function VerticalMenu({ id, onEdit, onDelete, onReport }: VerticalMenuProps) {
+export default function VerticalMenu({ username, session, id, onEdit, onDelete, onReport }: VerticalMenuProps) {
     const [isOpen, setIsOpen] = useState<number | null>(null);
 
     const toggleMenu = () => {
@@ -28,36 +30,45 @@ export default function VerticalMenu({ id, onEdit, onDelete, onReport }: Vertica
 
             {isOpen === id && (
                 <div className="absolute right-0 w-32 border border-gray-600/70 rounded-md shadow-lg flex flex-col space-y-2 p-2 comment-modal-menu z-10 bg-white dark:bg-gray-800">
-                    <button
-                        className="flex items-center space-x-2 p-2 rounded-md transition hover:bg-gray-600"
-                        onClick={() => {
-                            onEdit(id);
-                            setIsOpen(null);
-                        }}
-                    >
-                        <Edit size={16} className="default-color" />
-                        <span className="text-sm">Edit</span>
-                    </button>
-                    <button
-                        className="flex items-center space-x-2 p-2 rounded-md transition hover:bg-gray-600"
-                        onClick={() => {
-                            onDelete(id);
-                            setIsOpen(null);
-                        }}
-                    >
-                        <Trash size={16} className="default-color" />
-                        <span className="text-sm">Delete</span>
-                    </button>
-                    <button
-                        className="flex items-center space-x-2 p-2 rounded-md transition hover:bg-gray-600"
-                        onClick={() => {
-                            onReport(id);
-                            setIsOpen(null);
-                        }}
-                    >
-                        <Flag size={16} className="default-color" />
-                        <span className="text-sm">Report</span>
-                    </button>
+                    {session && session.username === username ? (
+                        <>
+                            <button
+                                className="flex items-center space-x-2 p-2 rounded-md transition hover:bg-gray-600"
+                                onClick={() => {
+                                    onEdit(id);
+                                    setIsOpen(null);
+                                }}
+                            >
+                                <Edit size={16} className="default-color" />
+                                <span className="text-sm">Edit</span>
+                            </button>
+                            <button
+                                className="flex items-center space-x-2 p-2 rounded-md transition hover:bg-gray-600"
+                                onClick={() => {
+                                    onDelete(id);
+                                    setIsOpen(null);
+                                }}
+                            >
+                                <Trash size={16} className="default-color" />
+                                <span className="text-sm">Delete</span>
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <button
+                                className="flex items-center space-x-2 p-2 rounded-md transition hover:bg-gray-600"
+                                onClick={() => {
+                                    onReport(id);
+                                    setIsOpen(null);
+                                }}
+                            >
+                                <Flag size={16} className="default-color" />
+                                <span className="text-sm">Report</span>
+                            </button>
+                        </>
+                    )}
+
+
                 </div>
             )}
         </div>
