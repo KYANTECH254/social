@@ -9,7 +9,7 @@ export default function TextareaInput({ setComment, comment, placeholder }: any)
             const textarea = textareaRef.current;
             textarea.style.height = "auto";
             textarea.style.height = `${textarea.scrollHeight}px`;
-            textarea.selectionStart = textarea.selectionEnd = textarea.value.length;
+            // textarea.selectionStart = textarea.selectionEnd = textarea.value.length;
         }
     }, [comment]);
 

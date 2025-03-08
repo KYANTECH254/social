@@ -6,14 +6,14 @@ import { useState } from "react";
 interface VerticalMenuProps {
     username: string;
     session: any;
-    id: number;
-    onEdit: (id: number) => void;
-    onDelete: (id: number) => void;
-    onReport: (id: number) => void;
+    id: string;
+    onEdit: (id: string) => void;
+    onDelete: (id: string) => void;
+    onReport: (id: string) => void;
 }
 
 export default function VerticalMenu({ username, session, id, onEdit, onDelete, onReport }: VerticalMenuProps) {
-    const [isOpen, setIsOpen] = useState<number | null>(null);
+    const [isOpen, setIsOpen] = useState<string | null>(null);
 
     const toggleMenu = () => {
         setIsOpen((prev) => (prev === id ? null : id));

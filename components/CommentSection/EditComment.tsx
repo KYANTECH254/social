@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import TextareaInput from "./TextareaInput";
 
 interface EditCommentProps {
-    comment: { id: number; text: string };
+    comment: { id: string; text: string };
     onSubmit: (newText: string) => void; 
 }
 

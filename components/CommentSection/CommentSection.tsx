@@ -19,7 +19,7 @@ export default function CommentSection({ session, post }: any) {
     const [replies, setReplies] = useState<any>(null);
     const [commentReplyInput, setCommentReplyInput] = useState(null);
     const [replyReplyInput, setReplyReplyInput] = useState(null);
-    const [editingId, setEditingId] = useState<number | null>(null);
+    const [editingId, setEditingId] = useState<string | null>(null);
     const [sortType, setSortType] = useState<"Popular" | "Newest" | "Oldest">("Popular");
 
     const sortedComments = [...comments].sort((a: any, b: any) => {
@@ -31,20 +31,20 @@ export default function CommentSection({ session, post }: any) {
 
     /**
      * Sets the comment to be edited to the one with the given id.
-     * @param {number} id the id of the comment to edit
+     * @param {string} id the id of the comment to edit
      * @param {string} text the new text of the comment
      * @returns {void}
      */
-    const handleEdit = (id: number, text: string) => {
+    const handleEdit = (id: string, text: string): void => {
         setEditingId(id);
     };
 
     /**
      * Handles deleting a comment.
-     * @param {number} id the id of the comment to delete
+     * @param {string} id the id of the comment to delete
      * @returns {void}
      */
-    const handleDelete = (id: number) => {
+    const handleDelete = (id: string): void => {
         setComments((prevComments) =>
             prevComments
                 .map((comment) => ({
@@ -63,15 +63,15 @@ export default function CommentSection({ session, post }: any) {
      * Handles adding a comment or reply to the comments state.
      * @param {string} text the text of the comment to add
      * @param {any | null} [parentComment] the parent comment to add the reply to
-     * @param {number | null} [parentID] the id of the parent comment to add the reply to
+     * @param {string | null} [parentID] the id of the parent comment to add the reply to
      * @returns {void}
      */
-    const handleAddComment = (text: string, parentComment: any | null = null, parentID: number | null = null) => {
+    const handleAddComment = (text: string, parentComment: any | null = null, parentID: string | null = null): void => {
         const username = randomUsername();
         const avatar = generateRandomColorAvatar(username);
         const newComment = {
-            id: Date.now(),
-            post: post?.id ?? Math.floor(Math.random() * 100000) + 1,
+            id: `${Date.now()}`,
+            post: `${post?.id ?? Math.floor(Math.random() * 100000) + 1}`,
             post_type: post?.type ?? "public",
             username: session?.username ?? username,
             avatar: session?.avatar ?? avatar,
@@ -115,11 +115,11 @@ export default function CommentSection({ session, post }: any) {
 
     /**
      * Edits a comment.
-     * @param {number} id the id of the comment to edit
+     * @param {string} id the id of the comment to edit
      * @param {string} newText the new text of the comment
      * @returns {void}
      */
-    const handleEditComment = (id: number, newText: string) => {
+    const handleEditComment = (id: string, newText: string): void => {
         setComments((prevComments) =>
             prevComments.map((comment) => {
                 if (comment.id === id) {
@@ -142,7 +142,7 @@ export default function CommentSection({ session, post }: any) {
         setEditingId(null);
     };
 
-    const handleReport = (id: number) => {
+    const handleReport = (id: string) => {
         toast.success(`Comment ${id} reported`, {
             duration: 3000,
             classNames: { toast: "alert" },
@@ -189,7 +189,11 @@ export default function CommentSection({ session, post }: any) {
 
                         {commentReplyInput === comment.id && (
                             <div className="mt-5">
-                                <ReplyInput comment={comment} setReplyInput={setCommentReplyInput} replyinput={commentReplyInput} onSubmit={(text) => handleAddComment(text, comment, comment.id)} />
+                                <ReplyInput 
+                                comment={comment} 
+                                setReplyInput={setCommentReplyInput} 
+                                replyinput={commentReplyInput} 
+                                onSubmit={(text) => handleAddComment(text, comment, comment.id)} />
                             </div>
                         )}
 

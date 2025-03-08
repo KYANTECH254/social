@@ -609,13 +609,11 @@ input:checked+.slider:before {
     height: 45px;
     align-items: center;
     font-size: 18px;
-    /* outline: 1px solid red; */
 }
 
 .public-top-post-body {
     padding: 15px;
     border-bottom: 1px solid var(--main-border-color);
-    /* outline: 1px solid red; */
 }
 
 .public-post-user {
@@ -652,6 +650,7 @@ input:checked+.slider:before {
 }
 
 .public-top-post-button {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;

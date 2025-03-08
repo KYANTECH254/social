@@ -4,7 +4,6 @@ import { Send, Smile } from "lucide-react";
 import { toast } from "sonner";
 import Emoji from "../Buttons/Emoji";
 import TextareaInput from "./TextareaInput";
-import { Toast } from "../Toast";
 
 export default function ReplyInput({ comment, setReplyInput, replyinput, onSubmit }: { onSubmit: (text: string) => void, setReplyInput: any, replyinput: any, comment: any; }) {
     const [reply, setReply] = useState("");

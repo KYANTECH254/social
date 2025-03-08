@@ -45,7 +45,7 @@ export type FloatingIcon = {
 }
 
 export type Reply = {
-    id: number;
+    id: string;
     username: string;
     reply_username: string;
     text: string;
@@ -55,7 +55,9 @@ export type Reply = {
 }
 
 export type Comment = {
-    id: number;
+    id: string;
+    post: string;
+    post_type: string;
     username: string;
     text: string;
     timestamp: string;
