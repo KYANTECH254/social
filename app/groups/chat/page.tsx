@@ -1,3 +1,4 @@
+"use client"
 import dynamic from 'next/dynamic';
 
 const GroupChatComponent = dynamic(() => import('@/components/pages/GroupChat'), { ssr: false });
