@@ -15,7 +15,7 @@ interface StatusViewerProps {
     initialIndex: number;
 }
 
-const StatusViewer = ({ statuses }: StatusViewerProps) => {
+export default function StatusViewer ({ statuses }: StatusViewerProps) {
     const router = useRouter();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentStatusIndex, setCurrentStatusIndex] = useState(0);
@@ -261,5 +261,3 @@ const StatusViewer = ({ statuses }: StatusViewerProps) => {
         </motion.div>
     );
 };
-
-export default StatusViewer;

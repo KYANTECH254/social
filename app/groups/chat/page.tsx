@@ -1,9 +1,7 @@
-import GroupChatComponent from "@/components/pages/GroupChat";
+import dynamic from 'next/dynamic';
 
-export default function page() {
-    return (
-        <>
-            <GroupChatComponent/>
-        </>
-    )
+const GroupChatComponent = dynamic(() => import('@/components/pages/GroupChat'), { ssr: false });
+
+export default function Page() {
+  return <GroupChatComponent />;
 }

@@ -123,7 +123,7 @@ export default function GroupIncomingMessage({ id, text, time, name, isReply, re
                 </div>
             </div>
 
-            <BottomPopupModal isOpen={showPopup} onClose={() => setShowPopup(false)}>
+            <BottomPopupModal isOpen={showPopup} onClose={() => setShowPopup(false)} size={0.3}>
                 <div className="p-4 flex flex-col gap-4">
                     <p className="text-lg font-bold">Reply to Message</p>
                     <div className="flex justify-around">

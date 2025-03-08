@@ -42,7 +42,7 @@ export default function ShareModal(isModalOpen: any) {
     };
 
     return (
-        <BottomPopupModal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <BottomPopupModal isOpen={isOpen} onClose={() => setIsOpen(false)} size={0.4}>
             <div className="space-y-4 share-btns-align">
                 <button
                     onClick={copyLink}
