@@ -19,9 +19,9 @@ export default function GoogleSignIn() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--main-background-color)] text-[var(--main-text-color)]">
       <div className="max-w-md w-full space-y-8 text-center px-4">
-        <h2 className="mt-6 text-3xl font-bold text-gray-900">
+        <h2 className="mt-6 text-3xl font-bold text-[var(--main-color)]">
           Everything in one place...
         </h2>
         <p className="mt-2 text-sm text-gray-600">
@@ -41,7 +41,7 @@ export default function GoogleSignIn() {
 
         <p className="mt-4 text-xs text-gray-500">
           By continuing, you agree to our
-          <Link href="/terms">Terms of Service</Link> and <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/terms" className="text-blue-500 font-semibold ml-1 mr-1">Terms of Service</Link> and <Link href="/privacy-policy" className="text-blue-500 font-semibold ml-1 mr-1">Privacy Policy</Link>
         </p>
       </div>
     </div>

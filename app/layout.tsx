@@ -29,6 +29,11 @@ export default function RootLayout({
         <Toaster
           richColors
           position="top-center"
+          toastOptions={{
+            classNames: {
+              toast: 'alert',
+            }
+          }}
         />
         <ThemeProvider>{children}</ThemeProvider>
       </body>

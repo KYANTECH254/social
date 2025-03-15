@@ -16,7 +16,7 @@ export default function Input({
                 onChange={onChange}
                 maxLength={maxLength}
                 placeholder={placeholder}
-                className={`text-lg tracking-widest p-2 py-2 border-2 rounded-md w-full bg-[var(--main-background-color)] text-[var(--main-text-color)] focus:outline-none focus:border-blue-500 ${className}`}
+                className={`p-2 py-2 border-2 rounded-md w-full bg-[var(--main-background-color)] text-[var(--main-text-color)] focus:outline-none focus:border-blue-500 ${className}`}
                 {...props}
             />
     );
