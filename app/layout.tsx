@@ -6,6 +6,7 @@ import "../public/styles/main.css"
 import "../public/styles/static.css"
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Toaster } from 'sonner';
+import { SessionProvider } from "@/contexts/SessionProvider";
 
 const notoSans = Nunito({
   subsets: ['latin'],
@@ -35,7 +36,9 @@ export default function RootLayout({
             }
           }}
         />
-        <ThemeProvider>{children}</ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

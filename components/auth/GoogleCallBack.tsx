@@ -17,24 +17,26 @@ export default function GoogleCallback() {
 
     const [user, setUser] = useState<any>(null);
     const [error, setError] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const code = searchParams.get("code");
-        const userParam = searchParams.get("user");
-        if (userParam) {
-            try {
-                const parsedUser = JSON.parse(decodeURIComponent(userParam));
-                setUser(parsedUser);
-                setLoading(false);
-                return;
-            } catch {
-                setError("Invalid user data in URL");
-                setLoading(false);
+        const storedUser = sessionStorage.getItem("settingupaccountdata");
+
+        if (!code && !storedUser) {
+            setError("No authorization code found or session expired.");
+            return;
+        }
+
+        if (!code) {
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
                 return;
             }
         }
+
         if (code) {
+            setLoading(true);
             async function fetchGoogleUser() {
                 try {
                     const response = await fetch("http://localhost:3001/api/auth/google", {
@@ -47,22 +49,25 @@ export default function GoogleCallback() {
 
                     if (!data.success) {
                         setError(data.message || "Failed to authenticate user");
-                    } else if (data.user) {
-                        if (data.loggedin) {
-                            setSession({
-                                accessToken: data.accessToken,
-                                refreshToken: data.refreshToken,
-                                user: data.user
-                            });
-                            toast.success(data.message)
-                        } else {
-                            const newUrl = new URL(window.location.origin + "/auth/account");
-                            newUrl.searchParams.set("user", encodeURIComponent(JSON.stringify(data.user)));
-                            window.location.href = newUrl.toString();
-                        }
+                    } else if (data.loggedin) {
+                        setSession({
+                            accessToken: data.accessToken,
+                            refreshToken: data.refreshToken,
+                            user: data.user,
+                        });
+
+                        toast.success(data.message);
+                        router.push("/");
                     } else {
-                        setError(data.message || "Failed to authenticate user");
+                        sessionStorage.setItem("settingupaccountdata", JSON.stringify(data.user));
+                        setUser(data.user);
                     }
+
+                    // ✅ Remove `code` from URL after authentication
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.delete("code");
+                    router.replace(newUrl.toString(), { scroll: false });
+
                 } catch {
                     setError("Failed to authenticate user");
                 } finally {
@@ -71,34 +76,24 @@ export default function GoogleCallback() {
             }
 
             fetchGoogleUser();
-        } else {
-            setError("No authorization code found");
-            setLoading(false);
         }
     }, [searchParams]);
 
-    if (loading) {
-        return <SpinLoader />;
-    }
-
-    if (error) {
-        return (
-            <ErrorComponent error={error} />
-        );
-    }
-    console.log(user);
+    if (loading) return <SpinLoader />;
+    if (error) return <ErrorComponent error={error} />;
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center p-5">
             <Logo />
-
-            {!user?.verifiedEmail ? (
+            {user && !user.verifiedEmail ? (
                 <h1 className="text-red-500 mt-2 font-bold text-center">
                     Your email is not verified. Please verify your Google email to continue.
                 </h1>
             ) : (
                 <>
-                    <h1 className="text-xl font-semibold text-[var(--main-text-color)] text-center">Welcome, {user?.name}!</h1>
+                    <h1 className="text-xl font-semibold text-[var(--main-text-color)] text-center">
+                        Welcome, {user?.name}!
+                    </h1>
                     <img
                         src={user?.avatar}
                         alt={user?.name}
@@ -119,14 +114,7 @@ export default function GoogleCallback() {
                         <Button
                             text="Next"
                             icon={ArrowRight}
-                            onClick={() => {
-                                if (user) {
-                                    const userParam = encodeURIComponent(JSON.stringify(user));
-                                    router.push(`/auth/finish-setup?user=${userParam}`);
-                                } else {
-                                    toast.error("User data is missing");
-                                }
-                            }}
+                            onClick={() => router.push("/auth/finish-setup")}
                             className="justify-center"
                         />
                     </div>

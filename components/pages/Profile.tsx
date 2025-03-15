@@ -1,11 +1,14 @@
 "use client"
+import { useSession } from "@/contexts/SessionProvider";
 import { Camera, Pen, Check } from "lucide-react"
 import { useState } from "react";
 
 export default function Profile() {
-    const [username, setUsername] = useState("john_doe");
+    const { session } = useSession();
     const [isEditing, setIsEditing] = useState(false);
-    const [profileImage, setProfileImage] = useState("/assets/images/profile-bg.png");
+
+    const [profileImage, setProfileImage] = useState(session?.user?.avatar);
+    const [username, setUsername] = useState(session?.user?.username);
 
     const handleImageChange = (event: any) => {
         const file = event.target.files[0];
@@ -14,14 +17,15 @@ export default function Profile() {
             setProfileImage(imageUrl);
         }
     };
+
     return (
         <>
-            {/* Profile Image Section */}
             <div className="display-center">
                 <div className="relative mt-6 profile-img-container">
                     <img
                         src={profileImage}
-                        alt="Profile"
+                        alt={session?.user?.name}
+                        title={session?.user?.name}
                         className="w-32 h-32 rounded-full border-4 border-gray-300 object-cover profile-img default-color"
                     />
                     <input
@@ -35,15 +39,14 @@ export default function Profile() {
                     </button>
                 </div>
             </div>
-            {/* User Info Section */}
             <div className="mt-6 w-full user-info-container">
                 <div className="flex flex-col justify-between profile-cards">
                     <span className="profile-left-text font-medium">Name</span>
-                    <span className="">John Doe</span>
+                    <span className="">{session?.user?.name || "User"}</span>
                 </div>
                 <div className="flex flex-col justify-between profile-cards">
                     <span className="profile-left-text font-medium">Email</span>
-                    <span className="">johndoe@example.com</span>
+                    <span className="">{session?.user?.email || "name@example.com"}</span>
                 </div>
                 <div className="flex flex-row justify-between profile-cards">
                     <div className="flex flex-col">

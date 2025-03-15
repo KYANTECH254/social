@@ -1,16 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Input from "../Inputs/Input";
 import Button from "../Buttons/Button";
 import { toast } from "sonner";
 import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import Logo from "./Logo";
 import SpinLoader from "../SpinLoader";
+import { useSession } from "@/contexts/SessionProvider";
 
 export default function FinishSetup() {
-    const searchParams = useSearchParams();
     const router = useRouter();
+    const { setSession } = useSession();
 
     const [user, setUser] = useState<any>(null);
     const [dob, setDob] = useState("");
@@ -20,30 +21,25 @@ export default function FinishSetup() {
     const [usernameAvailable, setUsernameAvailable] = useState<null | boolean>(null);
 
     useEffect(() => {
-        const userParam = searchParams.get("user");
+        const storedUser = sessionStorage.getItem("settingupaccountdata");
 
-        if (!userParam) {
+        if (!storedUser) {
             toast.error("Missing user details");
             router.push("/auth");
             return;
         }
 
         try {
-            const parsedUser = JSON.parse(decodeURIComponent(userParam));
-            setUser(parsedUser);
+            setUser(JSON.parse(storedUser));
             setLoading(false);
         } catch {
             toast.error("Invalid user data");
             router.push("/auth");
         }
-    }, [searchParams, router]);
+    }, [router]);
 
     useEffect(() => {
-        if (!user || !username.trim() || !dob || usernameAvailable === false) {
-            setIsDisabled(true);
-        } else {
-            setIsDisabled(false);
-        }
+        setIsDisabled(!user || !username.trim() || !dob || usernameAvailable === false);
     }, [user, dob, username, usernameAvailable]);
 
     const checkUsername = async (inputUsername: string) => {
@@ -51,21 +47,21 @@ export default function FinishSetup() {
             setUsernameAvailable(null);
             return;
         }
-    
+
         try {
             const response = await fetch("http://localhost:3001/api/check/username", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username: inputUsername }),
             });
-    
+
             const data = await response.json();
             setUsernameAvailable(data.success);
         } catch {
             setUsernameAvailable(null);
         }
     };
-    
+
     const isValidDOB = () => {
         if (!dob) return false;
         const birthDate = new Date(dob);
@@ -101,8 +97,15 @@ export default function FinishSetup() {
             const data = await response.json();
 
             if (data.success) {
-                toast.success("Setup completed successfully!");
-                router.push("/dashboard");
+                sessionStorage.removeItem("settingupaccountdata");
+                setSession({
+                    accessToken: data.accessToken,
+                    refreshToken: data.refreshToken,
+                    user: data.user,
+                });
+
+                toast.success(data.message);
+                router.push("/");
             } else {
                 toast.error(data.message || "Failed to update");
             }
