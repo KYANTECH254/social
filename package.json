@@ -1,0 +1,38 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emoji-mart/data": "^1.2.1",
+    "@emoji-mart/react": "^1.1.1",
+    "@react-spring/web": "^9.7.5",
+    "@use-gesture/react": "^10.3.1",
+    "emoji-mart": "^5.6.0",
+    "framer-motion": "^12.4.0",
+    "lucide-react": "^0.474.0",
+    "next": "^15.1.6",
+    "pnpm": "^9.15.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-media-recorder": "^1.7.1",
+    "react-modal-sheet": "^4.0.1",
+    "react-swipeable": "^7.0.2",
+    "sonner": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
