@@ -61,7 +61,6 @@ body {
     scrollbar-width: none;
     position: relative;
     -ms-overflow-style: none;
-    auto-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -152,7 +151,7 @@ body {
     position: fixed;
     width: 100%;
     z-index: 100;
-    top: 50px;
+    top: 45px;
     height: 80px;
 }
 
@@ -228,7 +227,7 @@ body {
     background-color: transparent;
     color: var(--main-white);
     max-width: 100%;
-    height:auto;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
