@@ -247,3 +247,14 @@ export function timeAgo(utcTime: string) {
 
   return `${years}y`;
 }
+
+export function isValidDOB(dob:string) {
+  if (!dob) return false;
+  const birthDate = new Date(dob);
+  const today = new Date();
+  const age = today.getFullYear() - birthDate.getFullYear();
+  const isBirthdayPassed =
+    today.getMonth() > birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+  return age > 13 || (age === 13 && isBirthdayPassed);
+};

@@ -1,6 +1,6 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect, Dispatch, SetStateAction, ReactNode } from "react";
-import Cookies from "js-cookie";
+import React, { createContext, useContext, useEffect, useState, ReactNode, cache } from "react";
+import { useRouter } from "next/navigation";
 
 interface User {
     id: string;
@@ -23,42 +23,50 @@ interface Session {
 
 interface SessionContextType {
     session: Session | null;
-    setSession: Dispatch<SetStateAction<Session | null>>;
+    setSession: (session: Session | null) => Promise<void>;
 }
 
 const SessionContext = createContext<SessionContextType>({
     session: null,
-    setSession: () => null,
+    setSession: async () => { },
 });
 
-export const SessionProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [session, setSession] = useState<Session | null>(null);
+interface Props {
+    children: ReactNode;
+}
 
-    // Load session from cookies on initial mount
+export const SessionProvider: React.FC<Props> = ({ children }) => {
+    const [session, setSessionState] = useState<Session | null>(null);
+    const router = useRouter();
+
     useEffect(() => {
-        const accessToken = Cookies.get("accessToken");
-        const refreshToken = Cookies.get("refreshToken");
-        const user = Cookies.get("user");
-
-        if (accessToken && refreshToken && user) {
+        const loadSession = cache(async () => {
             try {
-                const parsedUser: User = JSON.parse(user);
-                console.log(parsedUser);
-                
-                setSession({ accessToken, refreshToken, user: parsedUser });
-            } catch (error) {
-                console.error("Error parsing user data from cookies:", error);
+                const res = await fetch("/api/session");
+                const data = await res.json();
+                setSessionState(data.session);
+            } catch (err) {
+                console.error("Failed to load session:", err);
             }
-        }
+        })
+        loadSession();
     }, []);
 
-    useEffect(() => {
-        if (session) {
-            Cookies.set("accessToken", session.accessToken, { expires: 1 });
-            Cookies.set("refreshToken", session.refreshToken, { expires: 7 });
-            Cookies.set("user", JSON.stringify(session.user), { expires: 7 });
+    const setSession = cache(async (newSession: Session | null) => {
+        const res = await fetch("/api/session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newSession),
+        });
+        setSessionState(newSession);
+        const result = await res.json();
+        if (result.success) {
+            setSessionState(newSession);
+            router.push("/");
+        } else {
+            console.error("Failed to set session");
         }
-    }, [session]);
+    });
 
     return (
         <SessionContext.Provider value={{ session, setSession }}>

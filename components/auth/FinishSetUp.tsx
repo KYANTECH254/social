@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { cache, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Input from "../Inputs/Input";
 import Button from "../Buttons/Button";
@@ -8,6 +8,7 @@ import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import Logo from "./Logo";
 import SpinLoader from "../SpinLoader";
 import { useSession } from "@/contexts/SessionProvider";
+import { isValidDOB } from "@/lib/Functions";
 
 export default function FinishSetup() {
     const router = useRouter();
@@ -42,7 +43,7 @@ export default function FinishSetup() {
         setIsDisabled(!user || !username.trim() || !dob || usernameAvailable === false);
     }, [user, dob, username, usernameAvailable]);
 
-    const checkUsername = async (inputUsername: string) => {
+    const checkUsername = cache(async (inputUsername: string) => {
         if (!inputUsername.trim()) {
             setUsernameAvailable(null);
             return;
@@ -60,21 +61,10 @@ export default function FinishSetup() {
         } catch {
             setUsernameAvailable(null);
         }
-    };
+    })
 
-    const isValidDOB = () => {
-        if (!dob) return false;
-        const birthDate = new Date(dob);
-        const today = new Date();
-        const age = today.getFullYear() - birthDate.getFullYear();
-        const isBirthdayPassed =
-            today.getMonth() > birthDate.getMonth() ||
-            (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
-        return age > 13 || (age === 13 && isBirthdayPassed);
-    };
-
-    const handleFinish = async () => {
-        if (!isValidDOB()) {
+    const handleFinish = cache(async () => {
+        if (!isValidDOB(dob)) {
             toast.error("You must be at least 13 years old.");
             return;
         }
@@ -88,7 +78,7 @@ export default function FinishSetup() {
         }
 
         try {
-            const response = await fetch("http://localhost:3001/api/auth/updateUser", {
+            const response = await fetch("http://localhost:3001/api/auth/account", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ...user, dob, username }),
@@ -112,10 +102,10 @@ export default function FinishSetup() {
         } catch (error) {
             toast.error("Something went wrong");
         }
-    };
+    })
 
     if (loading) {
-        return <SpinLoader />;
+        return <SpinLoader type="fullpage-no-logo" />;
     }
 
     return (
