@@ -35,7 +35,7 @@ export default function GoogleSignIn() {
       <div className="max-w-md w-full space-y-8 text-center px-4">
         <div className="flex justify-center">
           <h1 className="text-4xl font-extrabold text-blue-500 tracking-tight">
-            WhaX
+            MyLogo
           </h1>
         </div>
 
