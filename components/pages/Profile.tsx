@@ -23,7 +23,7 @@ export default function Profile() {
             <div className="display-center">
                 <div className="relative mt-6 profile-img-container">
                     <img
-                        src={profileImage}
+                        src={profileImage || "assets/images/profile-bg.png"}
                         alt={session?.user?.name}
                         title={session?.user?.name}
                         className="w-32 h-32 rounded-full border-4 border-gray-300 object-cover profile-img default-color"
