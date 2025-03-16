@@ -37,7 +37,7 @@ export default function GoogleCallback() {
         if (code) {
             const fetchGoogleUser = cache(async () => {
                 try {
-                    const response = await fetch("http://localhost:3001/api/auth/google", {
+                    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/google`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ code }),

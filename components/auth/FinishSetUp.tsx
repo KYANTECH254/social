@@ -50,7 +50,7 @@ export default function FinishSetup() {
         }
 
         try {
-            const response = await fetch("http://localhost:3001/api/check/username", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/check/username`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username: inputUsername }),
@@ -78,7 +78,7 @@ export default function FinishSetup() {
         }
 
         try {
-            const response = await fetch("http://localhost:3001/api/auth/account", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/account`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ...user, dob, username }),
