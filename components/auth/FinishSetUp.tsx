@@ -83,9 +83,7 @@ export default function FinishSetup() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ...user, dob, username }),
             });
-
             const data = await response.json();
-
             if (data.success) {
                 sessionStorage.removeItem("settingupaccountdata");
                 setSession({
@@ -93,7 +91,6 @@ export default function FinishSetup() {
                     refreshToken: data.refreshToken,
                     user: data.user,
                 });
-
                 toast.success(data.message);
                 router.push("/");
             } else {

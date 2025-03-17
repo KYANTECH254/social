@@ -27,7 +27,6 @@ export default function GoogleCallback() {
             setLoading(false);
             return;
         }
-
         if (!code && storedUser) {
             setUser(JSON.parse(storedUser));
             setLoading(false);

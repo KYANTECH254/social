@@ -36,8 +36,8 @@ export async function GET() {
 
     try {
         const user = JSON.parse(userCookie);
-        return NextResponse.json({ session: { accessToken, refreshToken, user } });
+        return NextResponse.json({ success: true, session: { accessToken, refreshToken, user } });
     } catch {
-        return NextResponse.json({ session: null });
+        return NextResponse.json({ success: false, session: null });
     }
 }
