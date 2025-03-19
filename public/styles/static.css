@@ -76,9 +76,9 @@ input[type="range"]::-moz-range-thumb {
     background-color: #2563EB !important;
     border: #2563EB !important;
     color: white !important;
-    font-size: 15px !important;
+    font-size: 14px !important;
     font-weight: 500 !important;
-    font-family: inherit !important;
+    /* font-family: inherit !important; */
 }
 
 /* avatar */
