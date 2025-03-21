@@ -23,13 +23,11 @@ export default function FinishSetup() {
 
     useEffect(() => {
         const storedUser = sessionStorage.getItem("settingupaccountdata");
-
         if (!storedUser) {
             toast.error("Missing user details");
             router.push("/auth");
             return;
         }
-
         try {
             setUser(JSON.parse(storedUser));
             setLoading(false);

@@ -4,11 +4,6 @@ import { Trash2 } from "lucide-react";
 import { useState } from "react"
 
 export default function DeleteAccount({ isDeleteAccount, setIsDeleteAccount }: any) {
-    const [password, setPassword] = useState<string>('');
-
-    const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-    }
 
     const handleDeactivate = () => {
         setIsDeleteAccount(false);
@@ -25,9 +20,6 @@ export default function DeleteAccount({ isDeleteAccount, setIsDeleteAccount }: a
                 </p>
 
                 <div className="flex flex-col gap-3 pt-3">
-                    <label htmlFor="password" className="pt-3 text-lg">Enter you account password to continue</label>
-                    <Input type="password" maxLength={64} value={password ?? ''} onChange={handlePassword} placeholder="Enter password" />
-
                     <button
                         onClick={handleDeactivate}
                         className="flex items-center justify-center gap-2 w-full py-2 bg-red-600 text-[var(--main-text-color)] rounded-md shadow-lg hover:bg-red-700 transition-all"

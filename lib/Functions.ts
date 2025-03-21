@@ -1,3 +1,13 @@
+import jwt from "jsonwebtoken";
+
+export function generateToken(payload: object, expiresIn: string | number = "1h"): string {
+  const JWT_SECRET = process.env.JWT_SECRET!;
+  if (!JWT_SECRET) {
+    throw new Error("JWT_SECRET is not defined in environment variables");
+  }
+  return jwt.sign(payload, JWT_SECRET, { expiresIn });
+}
+
 export function formatTimestamp(timestamp: string) {
   if (typeof window === "undefined") {
     return "...";
@@ -248,7 +258,7 @@ export function timeAgo(utcTime: string) {
   return `${years}y`;
 }
 
-export function isValidDOB(dob:string) {
+export function isValidDOB(dob: string) {
   if (!dob) return false;
   const birthDate = new Date(dob);
   const today = new Date();

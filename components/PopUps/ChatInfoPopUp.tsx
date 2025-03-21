@@ -35,19 +35,6 @@ export default function ChatInfoPopUpMenu({ setShowMenu }: any) {
                             Share
                         </button>
                     </li>
-                    <li>
-                        <button
-                            onClick={() => {
-                                setIsOpen(false);
-                            }}
-                            className="flex items-center w-full px-4 py-2 text-xm hover:bg-[var(--main-hover-icons-color)]"
-                        >
-                            <Edit size={20} className="mr-2" />
-                            Edit
-                        </button>
-                    </li>
-                   
-                    
                 </ul>
             </div>
         </div>

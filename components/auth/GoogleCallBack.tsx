@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import ErrorComponent from "./Error";
 import { useSession } from "@/contexts/SessionProvider";
 import SpinLoader from "../SpinLoader";
+import { generateToken } from "@/lib/Functions";
 
 export default function GoogleCallback() {
     const searchParams = useSearchParams();
